@@ -67,30 +67,40 @@ class ProductsController extends Controller
 	 */
 	public function actionCreate()
 	{
+
 		$model = new Products();
+		$productsImage = new ProductsImage();
+
+
+		if ($model->load(Yii::$app->request->post())) {
+			$model->date = date("Y-m-d H:i:s");
+			$model->user_added = Yii::$app->user->id;
+
+			if ($model->save()) {
+				//TODO save image
+				return $this->redirect(['view', 'id' => $model->id]);
+			} else {
+				Yii::$app->getSession()->setFlash('error', 'Произошла ошибка при добавление товара, пожалуйста повторите сново.');
+			}
+		}
+
 		$modelCategories = new Categories();
 		$modelMarks = new Marks();
-		$productsImage = new ProductsImage();
 
 		$allCategories = $modelCategories->getArrayDropDownCategories();
 		$allMarks = $modelMarks->getArrayDropDownMarks();
 		$productStatus = $model->getStatusToDropDownList();
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
-		}
-
 		//подключаем JS
 		\Yii::$app->getView()->registerJsFile('@web/js/products/subcategoriesDropDown.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
-        return $this->render('create', [
-        	'productsImage' => $productsImage,
+		return $this->render('create', [
+			'productsImage' => $productsImage,
 			'productStatus' => $productStatus,
 			'allMarks' => $allMarks,
 			'allCategories' => $allCategories,
 			'model' => $model,
 		]);
-    }
+	}
 
 	/**
 	 * Updates an existing Products model.

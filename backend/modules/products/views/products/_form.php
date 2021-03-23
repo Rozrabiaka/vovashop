@@ -36,7 +36,7 @@ use kartik\file\FileInput;
 	<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
 	<?= $form->field($productsImage, 'image_path')->widget(FileInput::classname(), [
-		'attribute' => 'attachment_48[]',
+		'attribute' => 'products_1[]',
 		'pluginOptions' => [
 			'showUpload' => false,
 			'overwriteInitial' => true,

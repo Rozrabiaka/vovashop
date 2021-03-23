@@ -45,12 +45,12 @@ class Products extends \yii\db\ActiveRecord
 	{
 		return [
 			[['name', 'category_id', 'price', 'qty', 'description', 'date', 'user_added'], 'required'],
-			[['category_id', 'subcategory_id', 'price', 'qty', 'model', 'product_status', 'user_added'], 'integer'],
+			[['category_id', 'price', 'qty', 'model', 'product_status', 'user_added'], 'integer'],
 			[['description'], 'string'],
 			[['date'], 'safe'],
 			[['name'], 'string', 'max' => 255],
 			[['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
-			[['subcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
+			//[['subcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
 		];
 	}
 
