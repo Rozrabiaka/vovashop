@@ -19,9 +19,9 @@ class m210323_192324_create_table_product extends Migration
 
 		$this->createTable('{{%products}}', [
 			'id' => $this->primaryKey(),
-			'name' => $this->string()->notNull()->unique(),
+			'name' => $this->string()->notNull(),
 			'category_id' => $this->integer()->notNull(),
-			'subcategory_id' => $this->integer()->notNull(),
+			'subcategory_id' => $this->integer()->null(),
 			'price' => $this->integer()->notNull(),
 			'qty' => $this->integer()->notNull(),
 			'model' => $this->integer()->null(),
@@ -32,7 +32,6 @@ class m210323_192324_create_table_product extends Migration
 		], $tableOptions);
 
 		$this->addForeignKey('fk_products_categories', 'products', 'category_id', 'categories', 'id');
-		$this->addForeignKey('fk_products_subcategories', 'products', 'subcategory_id', 'subcategories', 'id');
 	}
 
 	/**

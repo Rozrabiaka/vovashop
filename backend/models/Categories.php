@@ -51,7 +51,7 @@ class Categories extends \yii\db\ActiveRecord
 
 	public function getArrayDropDownCategories()
 	{
-		return $allCategories = ArrayHelper::map($this->getAllCategories(), 'id', 'name');
+		return  ArrayHelper::map($this->getAllCategories(), 'id', 'name');
 	}
 
 	public function issetCategoryByName($name)

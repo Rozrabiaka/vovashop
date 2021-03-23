@@ -44,6 +44,7 @@ AppAsset::register($this);
 		$menuItems[] = ['label' => 'Категории', 'url' => ['/categories/categories']];
 		$menuItems[] = ['label' => 'Подкатегории', 'url' => ['/subcategories/subcategories']];
 		$menuItems[] = ['label' => 'Марки', 'url' => ['/marks/marks']];
+		$menuItems[] = ['label' => 'Продукты', 'url' => ['/products/products']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -66,6 +67,15 @@ AppAsset::register($this);
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
+    </div>
+</div>
+
+<div class="loading">
+    <div id="overlay">
+        <span>Идет загрузка данных.</span>
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
     </div>
 </div>
 

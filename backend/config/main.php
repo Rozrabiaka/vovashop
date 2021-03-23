@@ -21,6 +21,9 @@ return [
 		'marks' => [
 			'class' => 'backend\modules\marks\Module',
 		],
+		'products' => [
+			'class' => 'backend\modules\products\Module',
+		],
 	],
     'components' => [
         'request' => [

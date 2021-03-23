@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "marks".
@@ -46,5 +47,17 @@ class Marks extends \yii\db\ActiveRecord
 	public function issetMarkNyName($name)
 	{
 		return self::find()->where(['name' => $name])->one();
+	}
+
+	public function getAllMarks()
+	{
+		return self::find()->all();
+	}
+
+	public function getArrayDropDownMarks()
+	{
+		$allMarks = ArrayHelper::map($this->getAllMarks(), 'id', 'name');
+		return $allMarks;
+
 	}
 }

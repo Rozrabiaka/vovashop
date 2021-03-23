@@ -20,7 +20,7 @@ class m210323_194439_create_table_product_images extends Migration
 		$this->createTable('{{%products_image}}', [
 			'id' => $this->primaryKey(),
 			'product_id' => $this->integer()->notNull(),
-			'image_path' => $this->integer()->notNull()
+			'image_path' => $this->text()->notNull()
 		], $tableOptions);
 
 		$this->addForeignKey('fk_products_image', 'products_image', 'product_id', 'products', 'id');
