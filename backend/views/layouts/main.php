@@ -36,11 +36,14 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Домашняя страница', 'url' => ['/site/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+		$menuItems[] = ['label' => 'Категории', 'url' => ['/categories/categories']];
+		$menuItems[] = ['label' => 'Подкатегории', 'url' => ['/subcategories/subcategories']];
+		$menuItems[] = ['label' => 'Марки', 'url' => ['/marks/marks']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
