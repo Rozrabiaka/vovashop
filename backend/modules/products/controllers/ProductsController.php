@@ -94,11 +94,12 @@ class ProductsController extends Controller
 						if ($file->saveAs($imagePath)) {
 							$productImageArray[] = array(
 								'product_id' => (int)$productId,
-								'image_path' => $uploadPath
+								'image_path' => $uploadPath . '/' . $fileName
 							);
 						}
 					}
 
+					//save to product image table path
 					Yii::$app->db->createCommand()->batchInsert(
 						ProductsImage::tableName(),
 						['product_id', 'image_path'],
@@ -160,10 +161,20 @@ class ProductsController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		var_dump($id);
-		exit;
+		$modelProductImage = new ProductsImage();
+		$images = $modelProductImage::find()->where(['product_id' => $id])->asArray()->all();
 
-		//TODO удалить картинку из файла и с БД
+		foreach ($images as $data) {
+			if (file_exists(Yii::getAlias('@frontend') . $data['image_path'])) {
+				unlink(Yii::getAlias('@frontend') . $data['image_path']);
+			}
+			$delete = \Yii::$app
+				->db
+				->createCommand()
+				->delete('products_image', ['id' => $data['id']])
+				->execute();
+		}
+
 		$this->findModel($id)->delete();
 
 		return $this->redirect(['index']);
