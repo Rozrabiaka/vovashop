@@ -23,13 +23,41 @@ $this->params['breadcrumbs'][] = $this->title;
 		'columns' => [
 			['class' => 'yii\grid\SerialColumn'],
 			'name',
-			'category_id',
-			'subcategory_id',
+			[
+				'attribute' => 'category_id',
+				'value' => function ($model) {
+					return $model->category->name;
+				},
+			],
+			[
+				'attribute' => 'subcategory_id',
+				'value' => function ($model) {
+	                if(!empty($model->subcategory->name)) return $model->subcategory->name;
+					return '';
+				},
+			],
 			'price',
 			'qty',
-			'model',
-			'product_status',
-			'user_added',
+			[
+				'attribute' => 'model',
+				'value' => function ($model) {
+					if (!empty($model->marks[0]->name)) return $model->marks[0]->name;
+					return '';
+				},
+			],
+			[
+				'attribute' => 'product_status',
+				'value' => function ($model) {
+					if ($model->product_status == 1) return 'Активен';
+					return 'Неактивен';
+				},
+			],
+			[
+				'attribute' => 'user_added',
+				'value' => function ($model) {
+					return $model->user[0]->username;
+				},
+			],
 			['class' => 'yii\grid\ActionColumn'],
 		],
 	]); ?>

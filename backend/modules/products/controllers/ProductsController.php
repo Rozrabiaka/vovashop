@@ -72,6 +72,9 @@ class ProductsController extends Controller
 		$productsImage = new ProductsImage();
 
 		if ($model->load(Yii::$app->request->post())) {
+
+			if (Yii::$app->request->post('Products')['subcategory_id'] == 'prompt') $model->subcategory_id = null;
+
 			$model->date = date("Y-m-d H:i:s");
 			$model->user_added = Yii::$app->user->id;
 			$model->image = UploadedFile::getInstances($model, 'image');
@@ -157,6 +160,10 @@ class ProductsController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		var_dump($id);
+		exit;
+
+		//TODO удалить картинку из файла и с БД
 		$this->findModel($id)->delete();
 
 		return $this->redirect(['index']);

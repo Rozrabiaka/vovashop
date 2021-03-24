@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\models\User;
 use Yii;
 use yii\helpers\ArrayHelper;
 
@@ -53,7 +54,7 @@ class Products extends \yii\db\ActiveRecord
 			[['name'], 'string', 'max' => 255],
 			[['image'], 'file', 'maxFiles' => 8, 'skipOnEmpty' => false],
 			[['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
-			[['subcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
+			[['subcategory_id'], 'exist', 'skipOnEmpty' => true ,'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
 		];
 	}
 
@@ -105,6 +106,16 @@ class Products extends \yii\db\ActiveRecord
 	public function getProductsImages()
 	{
 		return $this->hasMany(ProductsImage::className(), ['product_id' => 'id']);
+	}
+
+	public function getUser()
+	{
+		return $this->hasMany(User::className(), ['id' => 'user_added']);
+	}
+
+	public function getMarks()
+	{
+		return $this->hasMany(Marks::className(), ['id' => 'model']);
 	}
 
 	public function getStatusToDropDownList()
