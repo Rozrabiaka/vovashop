@@ -11,6 +11,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductsController implements the CRUD actions for Products model.
@@ -67,19 +68,44 @@ class ProductsController extends Controller
 	 */
 	public function actionCreate()
 	{
-
 		$model = new Products();
 		$productsImage = new ProductsImage();
-
 
 		if ($model->load(Yii::$app->request->post())) {
 			$model->date = date("Y-m-d H:i:s");
 			$model->user_added = Yii::$app->user->id;
+			$model->image = UploadedFile::getInstances($model, 'image');
 
 			if ($model->save()) {
-				//TODO save image
+				if (!is_null($model->image)) {
+					$uploadPath = '/web' . Yii::getAlias('@uploads') . '/products/' . date('Y') . '/' . date('m');
+					$path = Yii::getAlias('@frontend') . $uploadPath;
+					if (!is_dir($path))
+						mkdir($path, 0777, true);
+
+					$productId = $model->getPrimaryKey();
+					$productImageArray = array();
+					foreach ($model->image as $file) {
+						$fileName = md5(microtime() . rand(0, 9999)) . '_' . $file->name;
+						$imagePath = $path . '/' . $fileName;
+						if ($file->saveAs($imagePath)) {
+							$productImageArray[] = array(
+								'product_id' => (int)$productId,
+								'image_path' => $uploadPath
+							);
+						}
+					}
+
+					Yii::$app->db->createCommand()->batchInsert(
+						ProductsImage::tableName(),
+						['product_id', 'image_path'],
+						$productImageArray
+					)->execute();
+				}
+
 				return $this->redirect(['view', 'id' => $model->id]);
 			} else {
+				var_dump($model->errors);
 				Yii::$app->getSession()->setFlash('error', 'Произошла ошибка при добавление товара, пожалуйста повторите сново.');
 			}
 		}

@@ -30,6 +30,8 @@ class Products extends \yii\db\ActiveRecord
 	CONST PRODUCT_ACTIVE = 1;
 	CONST PRODUCT_INACTIVE = 0;
 
+	public $image;
+
 	/**
 	 * {@inheritdoc}
 	 */
@@ -49,8 +51,9 @@ class Products extends \yii\db\ActiveRecord
 			[['description'], 'string'],
 			[['date'], 'safe'],
 			[['name'], 'string', 'max' => 255],
+			[['image'], 'file', 'maxFiles' => 8, 'skipOnEmpty' => false],
 			[['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
-			//[['subcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
+			[['subcategory_id'], 'exist', 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
 		];
 	}
 

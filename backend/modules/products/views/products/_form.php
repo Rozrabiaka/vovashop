@@ -15,7 +15,9 @@ use kartik\file\FileInput;
 
 <div class="products-form">
 
-	<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+	<?php $form = ActiveForm::begin([
+		'options' => ['enctype' => 'multipart/form-data'] // important
+	]); ?>
 
 	<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -35,15 +37,14 @@ use kartik\file\FileInput;
 
 	<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-	<?= $form->field($productsImage, 'image_path')->widget(FileInput::classname(), [
-		'attribute' => 'products_1[]',
+	<?= $form->field($model, 'image[]')->widget(FileInput::classname(), [
 		'pluginOptions' => [
 			'showUpload' => false,
 			'overwriteInitial' => true,
 			'allowedFileExtensions' => ['jpg', 'png', 'jpeg'],
 			'maxFileSize' => 2800
 		],
-		'options' => ['multiple' => true],
+		'options' => [ 'multiple' => true,'accept' => 'image/*'],
 	]); ?>
 
     <div class="form-group">

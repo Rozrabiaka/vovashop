@@ -31,7 +31,7 @@ class ProductsImage extends \yii\db\ActiveRecord
 		return [
 			[['product_id', 'image_path'], 'required'],
 			[['product_id'], 'integer'],
-			[['upload_image'], 'file', 'extensions' => 'png, jpg, jpeg'],
+			[['image_path'], 'file', 'extensions' => 'png, jpg, jpeg'],
 			[['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['product_id' => 'id']],
 		];
 	}
