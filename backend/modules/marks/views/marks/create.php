@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Marks */
 
-$this->title = 'Create Marks';
-$this->params['breadcrumbs'][] = ['label' => 'Marks', 'url' => ['index']];
+$this->title = 'Создать Марку';
+$this->params['breadcrumbs'][] = ['label' => 'Марки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="marks-create">
