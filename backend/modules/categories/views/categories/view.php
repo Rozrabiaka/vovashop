@@ -16,22 +16,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
-                'method' => 'post',
-            ],
-        ]) ?>
+		<?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+		<?= Html::a('Удалить', ['delete', 'id' => $model->id], [
+			'class' => 'btn btn-danger',
+			'data' => [
+				'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+				'method' => 'post',
+			],
+		]) ?>
     </p>
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'name',
-        ],
-    ]) ?>
+	<?= DetailView::widget([
+		'model' => $model,
+		'attributes' => [
+			'id',
+			'name',
+		],
+	]) ?>
 
 </div>

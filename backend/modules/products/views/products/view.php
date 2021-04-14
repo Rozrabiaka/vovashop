@@ -45,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				},
 			],
 			'price',
+			'dollar_price',
 			'qty',
 			[
 				'attribute' => 'model',

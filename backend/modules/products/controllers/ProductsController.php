@@ -3,6 +3,7 @@
 namespace backend\modules\products\controllers;
 
 use backend\models\Categories;
+use backend\models\CourseDollar;
 use backend\models\Marks;
 use backend\models\ProductsImage;
 use Yii;
@@ -74,10 +75,25 @@ class ProductsController extends Controller
 		if ($model->load(Yii::$app->request->post())) {
 
 			if (Yii::$app->request->post('Products')['subcategory_id'] == 'prompt') $model->subcategory_id = null;
+			if (!empty(Yii::$app->request->post('Products')['dollar_price'])) {
+				$dollarsInDollars = Yii::$app->request->post('Products')['dollar_price'];
+
+				$courseModel = new CourseDollar();
+				$course = $courseModel->getCourse();
+				if (is_null($course)) {
+					Yii::$app->getSession()->setFlash('error', 'Вы пытаетесь добавить продукт по курсу доллара. Пожалуйста, выставите курс доллара и сделайте попытку сново.');
+					return $this->redirect(['create']);
+				}
+
+				$uaPrice = $dollarsInDollars * $course;
+
+				$model->price = $uaPrice;
+			}
 
 			$model->date = date("Y-m-d H:i:s");
 			$model->user_added = Yii::$app->user->id;
 			$model->image = UploadedFile::getInstances($model, 'image');
+			$model->price = $uaPrice;
 
 			if ($model->save()) {
 				if (!is_null($model->image)) {
@@ -109,7 +125,6 @@ class ProductsController extends Controller
 
 				return $this->redirect(['view', 'id' => $model->id]);
 			} else {
-				var_dump($model->errors);
 				Yii::$app->getSession()->setFlash('error', 'Произошла ошибка при добавление товара, пожалуйста повторите сново.');
 			}
 		}

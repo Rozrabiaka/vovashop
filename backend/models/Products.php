@@ -3,8 +3,6 @@
 namespace backend\models;
 
 use common\models\User;
-use Yii;
-use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "products".
@@ -47,14 +45,14 @@ class Products extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['name', 'category_id', 'price', 'qty', 'description', 'date', 'user_added'], 'required'],
-			[['category_id', 'price', 'qty', 'model', 'product_status', 'user_added'], 'integer'],
+			[['name', 'category_id', 'qty', 'description', 'date', 'user_added'], 'required'],
+			[['category_id', 'price', 'qty', 'model', 'product_status', 'user_added', 'dollar_price'], 'integer'],
 			[['description'], 'string'],
 			[['date'], 'safe'],
 			[['name'], 'string', 'max' => 255],
 			[['image'], 'file', 'maxFiles' => 8, 'skipOnEmpty' => false],
 			[['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
-			[['subcategory_id'], 'exist', 'skipOnEmpty' => true ,'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
+			[['subcategory_id'], 'exist', 'skipOnEmpty' => true, 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
 		];
 	}
 
@@ -68,7 +66,8 @@ class Products extends \yii\db\ActiveRecord
 			'name' => 'Название',
 			'category_id' => 'Категория',
 			'subcategory_id' => 'Подкатегория',
-			'price' => 'Цена',
+			'price' => 'Цена в гривнах',
+			'dollar_price' => 'Цена в долларах',
 			'qty' => 'Количество',
 			'model' => 'Марка',
 			'description' => 'Описание',

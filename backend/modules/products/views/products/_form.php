@@ -27,6 +27,8 @@ use kartik\file\FileInput;
 
 	<?= $form->field($model, 'price')->textInput() ?>
 
+	<?= $form->field($model, 'dollar_price')->textInput() ?>
+
 	<?= $form->field($model, 'qty')->textInput() ?>
 
 	<?= $form->field($model, 'model')->dropDownList($allMarks, ['prompt' => 'Please, select value']) ?>
@@ -44,7 +46,7 @@ use kartik\file\FileInput;
 			'allowedFileExtensions' => ['jpg', 'png', 'jpeg'],
 			'maxFileSize' => 2800
 		],
-		'options' => [ 'multiple' => true,'accept' => 'image/*'],
+		'options' => ['multiple' => true, 'accept' => 'image/*'],
 	]); ?>
 
     <div class="form-group">
