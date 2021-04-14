@@ -21,9 +21,9 @@ use kartik\file\FileInput;
 
 	<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-	<?= $form->field($model, 'category_id')->dropDownList($allCategories, ['prompt' => 'Please, select value']) ?>
+	<?= $form->field($model, 'category_id')->dropDownList($allCategories, ['prompt' => 'Пожалуйста, выберите значение']) ?>
 
-	<?= $form->field($model, 'subcategory_id')->dropDownList(['prompt' => 'Please, choose category']) ?>
+	<?= $form->field($model, 'subcategory_id')->dropDownList(['prompt' => 'Пожалуйста, выберите категорию']) ?>
 
 	<?= $form->field($model, 'price')->textInput() ?>
 
@@ -31,7 +31,7 @@ use kartik\file\FileInput;
 
 	<?= $form->field($model, 'qty')->textInput() ?>
 
-	<?= $form->field($model, 'model')->dropDownList($allMarks, ['prompt' => 'Please, select value']) ?>
+	<?= $form->field($model, 'model')->dropDownList($allMarks, ['prompt' => 'Пожалуйста, выберите значение']) ?>
 
     <span style="color:red;">ВАЖНО!</span> Если Вы выбрали статус как "неактивен", то продукт не будет отбражаться на
     сайте в продаже
@@ -50,7 +50,7 @@ use kartik\file\FileInput;
 	]); ?>
 
     <div class="form-group">
-		<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+		<?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
 	<?php ActiveForm::end(); ?>

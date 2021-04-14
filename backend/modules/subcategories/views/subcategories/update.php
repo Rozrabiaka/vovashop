@@ -6,10 +6,10 @@ use yii\helpers\Html;
 /* @var $model backend\models\Subcategories */
 /* @var $allCategories backend\models\Subcategories */
 
-$this->title = 'Update Subcategories: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Subcategories', 'url' => ['index']];
+$this->title = 'Редактировать Подкатегорию: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Подкатегории', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Редактировать';
 ?>
 <div class="subcategories-update">
 

@@ -9,8 +9,8 @@ use yii\helpers\Html;
 /* @var $productStatus backend\modules\marks\controllers\MarksController */
 /* @var $productsImage backend\modules\marks\controllers\MarksController */
 
-$this->title = 'Create Products';
-$this->params['breadcrumbs'][] = ['label' => 'Products', 'url' => ['index']];
+$this->title = 'Создать Продукт';
+$this->params['breadcrumbs'][] = ['label' => 'Продукты', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="products-create">
