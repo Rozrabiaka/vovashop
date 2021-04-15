@@ -29,7 +29,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => 'Zemismoto',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -45,6 +45,7 @@ AppAsset::register($this);
 		$menuItems[] = ['label' => 'Подкатегории', 'url' => ['/subcategories/subcategories']];
 		$menuItems[] = ['label' => 'Марки', 'url' => ['/marks/marks']];
 		$menuItems[] = ['label' => 'Продукты', 'url' => ['/products/products']];
+		$menuItems[] = ['label' => 'Цвета', 'url' => ['/productcolors/productcolors']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(

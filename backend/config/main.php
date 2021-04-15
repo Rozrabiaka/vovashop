@@ -24,6 +24,9 @@ return [
 		'products' => [
 			'class' => 'backend\modules\products\Module',
 		],
+		'productcolors' => [
+			'class' => 'backend\modules\productcolors\Module',
+		],
 	],
     'components' => [
         'request' => [

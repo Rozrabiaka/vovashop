@@ -58,6 +58,5 @@ class Marks extends \yii\db\ActiveRecord
 	{
 		$allMarks = ArrayHelper::map($this->getAllMarks(), 'id', 'name');
 		return $allMarks;
-
 	}
 }

@@ -45,8 +45,8 @@ class Products extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['name', 'category_id', 'qty', 'description', 'date', 'user_added'], 'required'],
-			[['category_id', 'price', 'qty', 'model', 'product_status', 'user_added', 'dollar_price'], 'integer'],
+			[['name', 'category_id', 'qty', 'description', 'date', 'user_added', 'color'], 'required'],
+			[['category_id', 'price', 'qty', 'model', 'product_status', 'user_added', 'dollar_price', 'color'], 'integer'],
 			[['description'], 'string'],
 			[['date'], 'safe'],
 			[['name'], 'string', 'max' => 255],
@@ -73,6 +73,7 @@ class Products extends \yii\db\ActiveRecord
 			'description' => 'Описание',
 			'product_status' => 'Статус',
 			'date' => 'Дата',
+			'color' => 'Цвет',
 			'user_added' => 'Пользователь',
 		];
 	}

@@ -10,7 +10,8 @@ use kartik\file\FileInput;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $allCategories backend\modules\marks\controllers\MarksController */
 /* @var $allMarks backend\modules\marks\controllers\MarksController */
-/* @var $productStatus backend\modules\marks\controllers\MarksController */
+/* @var $productStatus backend\modules\products\controllers\ProductsController */
+/* @var $productColors backend\modules\products\controllers\ProductsController */
 ?>
 
 <div class="products-form">
@@ -25,13 +26,15 @@ use kartik\file\FileInput;
 
 	<?= $form->field($model, 'subcategory_id')->dropDownList(['prompt' => 'Пожалуйста, выберите категорию']) ?>
 
+	<?= $form->field($model, 'model')->dropDownList($allMarks, ['prompt' => 'Пожалуйста, выберите значение']) ?>
+
+	<?= $form->field($model, 'color')->dropDownList($productColors, ['prompt' => 'Пожалуйста, выберите цвет']) ?>
+
 	<?= $form->field($model, 'price')->textInput() ?>
 
 	<?= $form->field($model, 'dollar_price')->textInput() ?>
 
 	<?= $form->field($model, 'qty')->textInput() ?>
-
-	<?= $form->field($model, 'model')->dropDownList($allMarks, ['prompt' => 'Пожалуйста, выберите значение']) ?>
 
     <span style="color:red;">ВАЖНО!</span> Если Вы выбрали статус как "неактивен", то продукт не будет отбражаться на
     сайте в продаже

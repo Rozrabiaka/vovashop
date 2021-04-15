@@ -5,6 +5,7 @@ namespace backend\modules\products\controllers;
 use backend\models\Categories;
 use backend\models\CourseDollar;
 use backend\models\Marks;
+use backend\models\ProductColors;
 use backend\models\ProductsImage;
 use Yii;
 use backend\models\Products;
@@ -42,6 +43,14 @@ class ProductsController extends Controller
 	{
 		$dataProvider = new ActiveDataProvider([
 			'query' => Products::find(),
+			'pagination' => [
+				'pageSize' => 10,
+			],
+			'sort' => [
+				'defaultOrder' => [
+					'id' => SORT_DESC,
+				]
+			],
 		]);
 
 		return $this->render('index', [
@@ -131,10 +140,12 @@ class ProductsController extends Controller
 
 		$modelCategories = new Categories();
 		$modelMarks = new Marks();
+		$modelColors = new ProductColors();
 
 		$allCategories = $modelCategories->getArrayDropDownCategories();
 		$allMarks = $modelMarks->getArrayDropDownMarks();
 		$productStatus = $model->getStatusToDropDownList();
+		$productColors = $modelColors->getArrayDropDownColors();
 		//подключаем JS
 		\Yii::$app->getView()->registerJsFile('@web/js/products/subcategoriesDropDown.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
@@ -143,6 +154,7 @@ class ProductsController extends Controller
 			'productStatus' => $productStatus,
 			'allMarks' => $allMarks,
 			'allCategories' => $allCategories,
+			'productColors' => $productColors,
 			'model' => $model,
 		]);
 	}
@@ -158,11 +170,24 @@ class ProductsController extends Controller
 	{
 		$model = $this->findModel($id);
 
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
-		}
+//		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//			return $this->redirect(['view', 'id' => $model->id]);
+//		}
+
+		$modelCategories = new Categories();
+		$modelMarks = new Marks();
+
+		$allCategories = $modelCategories->getArrayDropDownCategories();
+		$allMarks = $modelMarks->getArrayDropDownMarks();
+		$productStatus = $model->getStatusToDropDownList();
+
+		//подключаем JS
+		\Yii::$app->getView()->registerJsFile('@web/js/products/subcategoriesDropDown.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 		return $this->render('update', [
+			'allMarks' => $allMarks,
+			'allCategories' => $allCategories,
+			'productStatus' => $productStatus,
 			'model' => $model,
 		]);
 	}

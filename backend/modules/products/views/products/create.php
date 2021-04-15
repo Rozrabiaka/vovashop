@@ -6,8 +6,9 @@ use yii\helpers\Html;
 /* @var $model backend\models\Products */
 /* @var $allCategories backend\modules\marks\controllers\MarksController */
 /* @var $allMarks backend\modules\marks\controllers\MarksController */
-/* @var $productStatus backend\modules\marks\controllers\MarksController */
-/* @var $productsImage backend\modules\marks\controllers\MarksController */
+/* @var $productStatus backend\modules\products\controllers\ProductsController */
+/* @var $productsImage backend\modules\products\controllers\ProductsController */
+/* @var $productColors backend\modules\products\controllers\ProductsController */
 
 $this->title = 'Создать Продукт';
 $this->params['breadcrumbs'][] = ['label' => 'Продукты', 'url' => ['index']];
@@ -18,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
 	<?= $this->render('_form', [
+		'productColors' => $productColors,
 		'productsImage' => $productsImage,
 		'productStatus' => $productStatus,
 		'allMarks' => $allMarks,
