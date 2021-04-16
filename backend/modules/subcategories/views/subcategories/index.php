@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Подкатегории';
+$this->title = 'Subcategories';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="subcategories-index">
@@ -14,22 +14,21 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-		<?= Html::a('Создать Подкатегорию', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Subcategories', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
 
-	<?= GridView::widget([
-		'dataProvider' => $dataProvider,
-		'columns' => [
-			['class' => 'yii\grid\SerialColumn'],
-			'name',
-			[
-				'attribute' => 'category_id',
-				'value' => function ($model) {
-					return $model->categories->name;
-				},
-			],
-			['class' => 'yii\grid\ActionColumn'],
-		],
-	]); ?>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'name',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+
 </div>

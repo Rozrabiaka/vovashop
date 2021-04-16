@@ -54,8 +54,8 @@ class ProductsAttributes extends \yii\db\ActiveRecord
 	{
 		return [
 			[['product_id'], 'required'],
-			[['product_id', 'engine_volume', 'engine_number'], 'integer'],
-			[['frame_number', 'engine_type', 'cooling', 'max_power', 'max_engine_speed', 'compression_ratio', 'supply_system', 'ignition_system', 'launch_system', 'kpp', 'chassis', 'frame', 'front_suspension', 'ear_suspension', 'brakes', 'tires', 'dshv', 'wheelbase', 'seat_height', 'ground_clearance', 'dry_weight', 'fuel_tank_volume', 'maximum_speed'], 'string', 'max' => 255],
+			[['product_id'], 'integer'],
+			[['frame_number', 'engine_volume', 'engine_number', 'engine_type', 'cooling', 'max_power', 'max_engine_speed', 'compression_ratio', 'supply_system', 'ignition_system', 'launch_system', 'kpp', 'chassis', 'frame', 'front_suspension', 'ear_suspension', 'brakes', 'tires', 'dshv', 'wheelbase', 'seat_height', 'ground_clearance', 'dry_weight', 'fuel_tank_volume', 'maximum_speed'], 'string', 'max' => 255],
 			[['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['product_id' => 'id']],
 		];
 	}

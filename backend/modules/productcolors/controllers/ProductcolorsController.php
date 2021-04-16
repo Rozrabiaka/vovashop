@@ -3,7 +3,7 @@
 namespace backend\modules\productcolors\controllers;
 
 use Yii;
-use backend\models\productColors;
+use backend\models\ProductColors;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -36,7 +36,7 @@ class ProductcolorsController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => productColors::find(),
+            'query' => ProductColors::find(),
         ]);
 
         return $this->render('index', [

@@ -9,64 +9,61 @@ use yii\helpers\ArrayHelper;
  * This is the model class for table "subcategories".
  *
  * @property int $id
- * @property string $name
- * @property int $category_id
- *
- * @property Categories $category
+ * @property float $name
  */
 class Subcategories extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'subcategories';
-    }
+	/**
+	 * {@inheritdoc}
+	 */
 
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            [['name', 'category_id'], 'required'],
-            [['category_id'], 'integer'],
-            [['name'], 'string', 'max' => 255],
-            [['name'], 'unique'],
-            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
-        ];
-    }
+	public $category;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'name' => 'Имя',
-            'category_id' => 'Категория',
-        ];
-    }
+	public $issetSubCategory;
 
-    /**
-     * Gets query for [[Category]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCategories()
-    {
-        return $this->hasOne(Categories::className(), ['id' => 'category_id']);
-    }
-
-    public function getSubCategories(){
-    	return self::find()->all();
-	}
-
-	public function getArrayDropDownCategories()
+	public static function tableName()
 	{
-		return  ArrayHelper::map($this->getSubCategories(), 'id', 'name');
+		return 'subcategories';
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	public function rules()
+	{
+		return [
+			[['name'], 'required'],
+			[['name'], 'string'],
+			[['category'], 'integer'],
+			[['issetSubCategory'], 'integer'],
+		];
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function attributeLabels()
+	{
+		return [
+			'id' => 'ID',
+			'name' => 'Подкатегория',
+			'category' => 'Категория',
+			'issetSubCategory' => 'Существующие подкатегории',
+		];
+	}
+
+	public function getArrayDropDownSubCategories()
+	{
+		return ArrayHelper::map($this->getAllSubCategories(), 'id', 'name');
+	}
+
+	public function getAllSubCategories()
+	{
+		return self::find()->all();
+	}
+
+	public function getSubCategoryByName($name)
+	{
+		return self::find()->where(['name' => $name])->one();
+	}
 }
