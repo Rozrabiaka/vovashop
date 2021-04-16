@@ -18,8 +18,8 @@ class m210415_131713_product_attributes extends Migration
 			'id' => $this->primaryKey(),
 			'product_id' => $this->integer(11)->notNull(),
 			'frame_number' => $this->string()->null(),//номер рамы for example LTF12354896245RHDK
-			'engine_volume' => $this->integer()->null(), //обьем двигателя
-			'engine_number' => $this->integer()->null(), // номер двигателя
+			'engine_volume' => $this->string()->null(), //обьем двигателя
+			'engine_number' => $this->string()->null(), // номер двигателя
 			'engine_type' => $this->string()->null(), // тип двигателя
 			'cooling' => $this->string()->null(), // охлождение
 			'max_power' => $this->string()->null(), // макс мощность
@@ -27,7 +27,7 @@ class m210415_131713_product_attributes extends Migration
 			'compression_ratio' => $this->string()->null(), // степень сжатия
 			'supply_system' => $this->string()->null(), // cиcтема питания
 			'ignition_system' => $this->string()->null(), // система зажигания
-			'launch system' => $this->string()->null(), // система пуска
+			'launch_system' => $this->string()->null(), // система пуска
 			'kpp' => $this->string()->null(), // КПП / Главная передача
 			'chassis' => $this->string()->null(), // Шасси
 			'frame' => $this->string()->null(), // Рама

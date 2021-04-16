@@ -42,4 +42,9 @@ $(document).ready(function () {
             }
         });
     });
+
+    //show or hide attributes
+    jQuery('.product-attributes-show').click(function () {
+        jQuery('.product-attributes').toggle();
+    });
 });

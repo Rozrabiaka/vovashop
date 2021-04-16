@@ -45,12 +45,13 @@ class Products extends \yii\db\ActiveRecord
 	public function rules()
 	{
 		return [
-			[['name', 'category_id', 'qty', 'description', 'date', 'user_added', 'color'], 'required'],
-			[['category_id', 'price', 'qty', 'model', 'product_status', 'user_added', 'dollar_price', 'color'], 'integer'],
+			[['name', 'category_id', 'qty', 'description', 'date', 'user_added'], 'required'],
+			[['category_id', 'qty', 'model', 'product_status', 'user_added', 'dollar_price', 'color'], 'integer'],
 			[['description'], 'string'],
 			[['date'], 'safe'],
+			[['price'], 'number'],
 			[['name'], 'string', 'max' => 255],
-			[['image'], 'file', 'maxFiles' => 8, 'skipOnEmpty' => false],
+			[['image'], 'file', 'maxFiles' => 16, 'skipOnEmpty' => false],
 			[['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
 			[['subcategory_id'], 'exist', 'skipOnEmpty' => true, 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
 		];

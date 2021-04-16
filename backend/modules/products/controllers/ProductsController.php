@@ -6,6 +6,7 @@ use backend\models\Categories;
 use backend\models\CourseDollar;
 use backend\models\Marks;
 use backend\models\ProductColors;
+use backend\models\ProductsAttributes;
 use backend\models\ProductsImage;
 use Yii;
 use backend\models\Products;
@@ -80,6 +81,7 @@ class ProductsController extends Controller
 	{
 		$model = new Products();
 		$productsImage = new ProductsImage();
+		$productAttributes = new ProductsAttributes();
 
 		if ($model->load(Yii::$app->request->post())) {
 
@@ -130,6 +132,11 @@ class ProductsController extends Controller
 						['product_id', 'image_path'],
 						$productImageArray
 					)->execute();
+
+					//save product attributes
+					$productAttributes->load(Yii::$app->request->post());
+					$productAttributes->product_id = $productId;
+					$productAttributes->save();
 				}
 
 				return $this->redirect(['view', 'id' => $model->id]);
@@ -142,10 +149,12 @@ class ProductsController extends Controller
 		$modelMarks = new Marks();
 		$modelColors = new ProductColors();
 
+
 		$allCategories = $modelCategories->getArrayDropDownCategories();
 		$allMarks = $modelMarks->getArrayDropDownMarks();
 		$productStatus = $model->getStatusToDropDownList();
 		$productColors = $modelColors->getArrayDropDownColors();
+
 		//подключаем JS
 		\Yii::$app->getView()->registerJsFile('@web/js/products/subcategoriesDropDown.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
@@ -155,6 +164,7 @@ class ProductsController extends Controller
 			'allMarks' => $allMarks,
 			'allCategories' => $allCategories,
 			'productColors' => $productColors,
+			'productAttributes' => $productAttributes,
 			'model' => $model,
 		]);
 	}

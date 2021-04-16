@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "subcategories".
@@ -58,4 +59,14 @@ class Subcategories extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Categories::className(), ['id' => 'category_id']);
     }
+
+    public function getSubCategories(){
+    	return self::find()->all();
+	}
+
+	public function getArrayDropDownCategories()
+	{
+		return  ArrayHelper::map($this->getSubCategories(), 'id', 'name');
+	}
+
 }

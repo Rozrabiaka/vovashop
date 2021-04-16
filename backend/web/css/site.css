@@ -171,3 +171,11 @@ a.desc:after {
 }
 
 /* конец блока loading */
+
+/* attributes show*/
+.product-attributes{
+    display:none;
+}
+.product-attributes-show{
+    cursor: pointer;
+}
