@@ -68,65 +68,31 @@ class SubcategoriesController extends Controller
 	{
 		$model = new Subcategories();
 
-		$message = '';
-		$errorMessage = '';
 		if ($model->load(Yii::$app->request->post())) {
-			$issetSubCategory = $model->getSubCategoryByName(Yii::$app->request->post('Subcategories')['name']);
-			$resultSave = false;
-			$issetRelation = false;
-
-			if (empty($issetSubCategory)) {
-				$resultSave = $model->save();
-				if ($resultSave === true) $message .= 'Созданная подкатегория была успешно сохранена.';
-			} else {
-				$errorMessage .= 'Подкатегория с таким иминем уже существует.';
-			}
-
-			$selectedCategory = Yii::$app->request->post('Subcategories')['category'];
-			if (!empty($selectedCategory)) {
-				$selectedSubCategory = Yii::$app->request->post('Subcategories')['issetSubCategory'];
-				$relationsCategory = new RelationsCategory();
-
-				if (!empty($selectedCategory) AND !empty($selectedSubCategory)) {
-					$relationResult = $relationsCategory->issetRelation($selectedSubCategory, $selectedCategory);
-					if (!empty($relationResult)) {
-						$issetRelation = true;
-						$errorMessage .= 'Выбраная вами подкатегория уже привязана к категории.';
-					}
-				}
-				if ($resultSave === true) {
+			$nameSubCategory = Yii::$app->request->post('Subcategories')['name'];
+			$issetSubCategory = $model->getSubCategoryByName($nameSubCategory);
+			if (empty($issetSubCategory) AND $model->save()) {
+				$selectedCategory = Yii::$app->request->post('Subcategories')['category'];
+				if (!empty($selectedCategory)) {
+					$relationsCategory = new RelationsCategory();
 					$relationsCategory->subcategory = $model->getPrimaryKey();
 					$relationsCategory->category = $selectedCategory;
 					$relationsCategory->save();
-
-					$message .= 'Созданая подкатегория была привязана к категории.';
 				}
-				if (!empty($selectedSubCategory) AND $issetRelation === false) {
-					$relationsCategory->subcategory = $selectedSubCategory;
-					$relationsCategory->category = $selectedCategory;
-					$relationsCategory->save();
-
-					$message .= 'Выбранная подкатегория была привязана к категории';
-				}
-
-				if (!empty($message)) Yii::$app->getSession()->setFlash('success', $message);
-				if (!empty($errorMessage)) {
-					Yii::$app->getSession()->setFlash('error', $errorMessage);
-					return $this->redirect(['/subcategories/subcategories', 'id' => $model->id]);
-				}
-
+				Yii::$app->getSession()->setFlash('success', 'Подкатегория ' . $nameSubCategory . ' была успешно создана');
 				return $this->redirect(['view', 'id' => $model->id]);
+			} else {
+				Yii::$app->getSession()->setFlash('error', 'Подкатегория с таким иминем уже существует');
+				return $this->redirect(['/subcategories/subcategories', 'id' => $model->id]);
 			}
 		}
 
 		$modelCategories = new Categories();
 		$dropDownCategories = $modelCategories->getArrayDropDownCategories();
-		$dropDownSubCategories = $model->getArrayDropDownSubCategories();
 
 		return $this->render('create', [
 			'model' => $model,
 			'dropDownCategories' => $dropDownCategories,
-			'dropDownSubCategories' => $dropDownSubCategories,
 		]);
 	}
 
@@ -140,18 +106,21 @@ class SubcategoriesController extends Controller
 	public function actionUpdate($id)
 	{
 		$model = $this->findModel($id);
-		$modelCategories = new Categories();
-		$dropDownCategories = $modelCategories->getArrayDropDownCategories();
-		$dropDownSubCategories = $model->getArrayDropDownSubCategories();
-
-		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['view', 'id' => $model->id]);
+		if ($model->load(Yii::$app->request->post())) {
+			$nameSubCategory = Yii::$app->request->post('Subcategories')['name'];
+			$issetSubCategory = $model->getSubCategoryByName($nameSubCategory);
+			if (empty($issetSubCategory)) {
+				if ($model->save()) {
+					Yii::$app->getSession()->setFlash('success', 'Вы успешно переименовали подкатегорию.');
+					return $this->redirect(['view', 'id' => $model->id]);
+				}
+			} else {
+				Yii::$app->getSession()->setFlash('error', 'Подкатегория с таким иминем уже существует.');
+			}
 		}
 
 		return $this->render('update', [
 			'model' => $model,
-			'dropDownCategories' => $dropDownCategories,
-			'dropDownSubCategories' => $dropDownSubCategories,
 		]);
 	}
 

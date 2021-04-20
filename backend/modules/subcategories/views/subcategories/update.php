@@ -4,10 +4,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Subcategories */
-/* @var $dropDownCategories backend\modules\subcategories\controllers\SubcategoriesController */
-/* @var $dropDownSubCategories backend\modules\subcategories\controllers\SubcategoriesController */
 
-$this->title = 'Update Subcategories: ' . $model->name;
+$this->title = 'Сменить имя подкатегории: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Subcategories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
@@ -16,10 +14,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
+    <?= $this->render('_updateForm', [
         'model' => $model,
-		'dropDownCategories' => $dropDownCategories,
-		'dropDownSubCategories' => $dropDownSubCategories,
     ]) ?>
 
 </div>

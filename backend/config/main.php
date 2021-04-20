@@ -27,6 +27,9 @@ return [
 		'productcolors' => [
 			'class' => 'backend\modules\productcolors\Module',
 		],
+		'relationscategory' => [
+			'class' => 'backend\modules\relationscategory\Module',
+		],
 	],
     'components' => [
         'request' => [

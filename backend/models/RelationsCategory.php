@@ -2,8 +2,6 @@
 
 namespace backend\models;
 
-use Yii;
-
 /**
  * This is the model class for table "relations_category".
  *
@@ -16,6 +14,8 @@ use Yii;
  */
 class RelationsCategory extends \yii\db\ActiveRecord
 {
+	public $checkbox;
+
 	/**
 	 * {@inheritdoc}
 	 */
@@ -32,6 +32,7 @@ class RelationsCategory extends \yii\db\ActiveRecord
 		return [
 			[['subcategory', 'category'], 'required'],
 			[['subcategory', 'category'], 'integer'],
+			[['checkbox'], 'each', 'rule' => ['integer']],
 			[['category'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category' => 'id']],
 			[['subcategory'], 'exist', 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory' => 'id']],
 		];
@@ -69,11 +70,10 @@ class RelationsCategory extends \yii\db\ActiveRecord
 		return $this->hasOne(Subcategories::className(), ['id' => 'subcategory']);
 	}
 
-	public function issetRelation($subId, $categoryId)
+	public function issetRelation($subId)
 	{
 		return self::find()->andWhere(['and',
 			['subcategory' => $subId],
-			['category' => $categoryId]
-		])->one();
+		])->all();
 	}
 }

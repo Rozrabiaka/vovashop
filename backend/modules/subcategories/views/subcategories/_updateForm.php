@@ -6,7 +6,6 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Subcategories */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $dropDownCategories backend\modules\subcategories\controllers\SubcategoriesController */
 ?>
 
 <div class="subcategories-form">
@@ -14,7 +13,6 @@ use yii\widgets\ActiveForm;
 	<?php $form = ActiveForm::begin(); ?>
 
 	<?= $form->field($model, 'name')->textInput() ?>
-	<?= $form->field($model, 'category')->dropDownList($dropDownCategories, ['prompt' => 'Пожалуйста, выберите значение']) ?>
     <div class="form-group">
 		<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
