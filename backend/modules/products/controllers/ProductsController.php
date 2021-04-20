@@ -11,6 +11,7 @@ use backend\models\ProductsImage;
 use Yii;
 use backend\models\Products;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -184,20 +185,25 @@ class ProductsController extends Controller
 //			return $this->redirect(['view', 'id' => $model->id]);
 //		}
 
+		$productAttributes = new ProductsAttributes();
 		$modelCategories = new Categories();
+		$modelColors = new ProductColors();
 		$modelMarks = new Marks();
 
 		$allCategories = $modelCategories->getArrayDropDownCategories();
 		$allMarks = $modelMarks->getArrayDropDownMarks();
 		$productStatus = $model->getStatusToDropDownList();
+		$productColors = $modelColors->getArrayDropDownColors();
 
 		//подключаем JS
 		\Yii::$app->getView()->registerJsFile('@web/js/products/subcategoriesDropDown.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
 		return $this->render('update', [
 			'allMarks' => $allMarks,
+			'productColors' => $productColors,
 			'allCategories' => $allCategories,
 			'productStatus' => $productStatus,
+			'productAttributes' => $productAttributes,
 			'model' => $model,
 		]);
 	}
@@ -215,9 +221,10 @@ class ProductsController extends Controller
 		$images = $modelProductImage::find()->where(['product_id' => $id])->asArray()->all();
 
 		foreach ($images as $data) {
-			if (file_exists(Yii::getAlias('@frontend') . $data['image_path'])) {
-				unlink(Yii::getAlias('@frontend') . $data['image_path']);
+			if (file_exists(Yii::getAlias('@frontend') . '/web' . $data['image_path'])) {
+				unlink(Yii::getAlias('@frontend') . '/web' . $data['image_path']);
 			}
+
 			$delete = \Yii::$app
 				->db
 				->createCommand()

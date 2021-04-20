@@ -72,150 +72,175 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 			[
 				'attribute' => 'frame_number',
+				'label' => 'Номер рамы',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->frame_number;
 				},
 			],
 			[
 				'attribute' => 'engine_volume',
+				'label' => 'Объем двигателя',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'engine_number',
+				'label' => 'Номер двигателя',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'engine_type',
+				'label' => 'Тип двигателя',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'cooling',
+				'label' => 'Охлождение',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'max_power',
+				'label' => 'Макс. мощность',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'max_engine_speed',
+				'label' => 'Макс. крутящий момент',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'compression_ratio',
+				'label' => 'Степень сжатия',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'supply_system',
+				'label' => 'Сиcтема питания',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'ignition_system',
+				'label' => 'Система зажигания',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'launch_system',
+				'label' => 'Система пуска',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'kpp',
+				'label' => 'КПП / Главная передача',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'chassis',
+				'label' => 'Шасси',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'frame',
+				'label' => 'Рама',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'front_suspension',
+				'label' => 'Передняя подвеска',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'ear_suspension',
+				'label' => 'Задняя подвеска',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'brakes',
+				'label' => 'Тормоза, передний / задний',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'tires',
+				'label' => 'Шины, передняя / задняя',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'dshv',
+				'label' => 'ДхШхВ',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'wheelbase',
+				'label' => 'Колесная база',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'seat_height',
+				'label' => 'Высота по сидению',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'ground_clearance',
+				'label' => 'Дорожный просвет',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'dry_weight',
+				'label' => 'Сухой вес',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'fuel_tank_volume',
+				'label' => 'Обьем топливново бака',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
 			],
 			[
 				'attribute' => 'maximum_speed',
+				'label' => 'Максимальная скорость',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},

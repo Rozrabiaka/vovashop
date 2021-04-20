@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\ProductsImage;
 use backend\models\Subcategories;
 use yii\web\Controller;
 use Yii;
@@ -28,5 +29,27 @@ class AjaxController extends Controller
 		}
 
 		return JSON::encode(null);
+	}
+
+	public function actionDeleteProductImage()
+	{
+
+		if (Yii::$app->request->isAjax) {
+			$data = Yii::$app->request->post();
+			$id = $data['key'];
+
+			$model = new ProductsImage();
+			$result = $model::find()->where(['id' => $id])->one();
+
+			if (file_exists(Yii::getAlias('@frontend') . '/web' . $result->image_path)) {
+				unlink(Yii::getAlias('@frontend') . '/web' . $result->image_path);
+			}
+
+			$result->delete();
+
+			return true;
+		}
+
+		return false;
 	}
 }

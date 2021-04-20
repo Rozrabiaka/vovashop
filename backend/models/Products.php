@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use common\models\User;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "products".
@@ -122,6 +123,20 @@ class Products extends \yii\db\ActiveRecord
 	public function getProductsAttributes()
 	{
 		return $this->hasMany(ProductsAttributes::className(), ['product_id' => 'id']);
+	}
+
+	public function getImagesLinks()
+	{
+		return ArrayHelper::getColumn($this->productsImages, 'image_path');
+	}
+
+	public function getImagesLinksData()
+	{
+		return ArrayHelper::toArray($this->productsImages, [
+			ProductsImage::className() => [
+				'key' => 'id'
+			]
+		]);
 	}
 
 	public function getStatusToDropDownList()

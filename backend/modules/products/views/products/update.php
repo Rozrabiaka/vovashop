@@ -4,9 +4,12 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Products */
-/* @var $allCategories backend\modules\marks\controllers\MarksController */
+/* @var $allCategories backend\modules\categories\controllers\CategoriesController */
 /* @var $allMarks backend\modules\marks\controllers\MarksController */
-/* @var $productStatus backend\modules\marks\controllers\MarksController */
+/* @var $productStatus backend\models\Products */
+/* @var $productColors backend\modules\productColors\controllers\ProductcolorsController */
+/* @var $productAttributes backend\modules\products\controllers\ProductsController */
+/* @var $imageArray backend\modules\products\controllers\ProductsController */
 
 $this->title = 'Редактировать Продукт: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Продукты', 'url' => ['index']];
@@ -17,11 +20,13 @@ $this->params['breadcrumbs'][] = 'Редактировать';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?= $this->render('_form', [
+	<?= $this->render('_updateForm', [
 		'allMarks' => $allMarks,
 		'allCategories' => $allCategories,
 		'productStatus' => $productStatus,
-        'model' => $model,
-    ]) ?>
+		'productColors' => $productColors,
+		'productAttributes' => $productAttributes,
+		'model' => $model,
+	]) ?>
 
 </div>

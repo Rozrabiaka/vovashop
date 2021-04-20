@@ -17,7 +17,6 @@ $this->params['breadcrumbs'][] = $this->title;
 		<?= Html::a('Создать Продукт', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
 		'columns' => [
@@ -32,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			[
 				'attribute' => 'subcategory_id',
 				'value' => function ($model) {
-	                if(!empty($model->subcategory->name)) return $model->subcategory->name;
+					if (!empty($model->subcategory->name)) return $model->subcategory->name;
 					return '';
 				},
 			],
@@ -61,6 +60,4 @@ $this->params['breadcrumbs'][] = $this->title;
 			['class' => 'yii\grid\ActionColumn'],
 		],
 	]); ?>
-
-
 </div>
