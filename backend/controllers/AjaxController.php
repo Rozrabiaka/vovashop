@@ -13,15 +13,20 @@ class AjaxController extends Controller
 	{
 		if (Yii::$app->request->isAjax) {
 			$data = Yii::$app->request->get();
+			$categoryId = $data['category_id'];
 
-			$model = new Subcategories();
-			$result = $model::find()->where(['category_id' => $data['category_id']])->asArray()->all();
+			$result = Subcategories::find()
+				->select(['subcategories.id', 'subcategories.name'])
+				->leftJoin('relations_category', 'subcategories.id = relations_category.subcategory')
+				->where(['category' => $categoryId])
+				->asArray()
+				->all();
 
 			if (!empty($result)) {
 				return JSON::encode($result);
 			}
 		}
 
-		return JSON::encode(null);;
+		return JSON::encode(null);
 	}
 }
