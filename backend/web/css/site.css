@@ -179,3 +179,7 @@ a.desc:after {
 .product-attributes-show{
     cursor: pointer;
 }
+.block-image-product-view img{
+    width:100%;
+    height:300px;
+}

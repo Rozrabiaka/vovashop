@@ -108,8 +108,8 @@ class ProductsController extends Controller
 
 			if ($model->save()) {
 				if (!is_null($model->image)) {
-					$uploadPath = '/web' . Yii::getAlias('@uploads') . '/products/' . date('Y') . '/' . date('m');
-					$path = Yii::getAlias('@frontend') . $uploadPath;
+					$uploadPath = Yii::getAlias('@uploads') . '/products/' . date('Y') . '/' . date('m');
+					$path = Yii::getAlias('@frontend') . '/web' . $uploadPath;
 					if (!is_dir($path))
 						mkdir($path, 0777, true);
 

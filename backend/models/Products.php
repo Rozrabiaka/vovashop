@@ -119,6 +119,11 @@ class Products extends \yii\db\ActiveRecord
 		return $this->hasMany(Marks::className(), ['id' => 'model']);
 	}
 
+	public function getProductsAttributes()
+	{
+		return $this->hasMany(ProductsAttributes::className(), ['product_id' => 'id']);
+	}
+
 	public function getStatusToDropDownList()
 	{
 		return array(
