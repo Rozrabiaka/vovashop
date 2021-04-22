@@ -248,13 +248,18 @@ $this->params['breadcrumbs'][] = $this->title;
 		],
 	]) ?>
 
-    <div class="row">
-        <div class="admin-view-product-image">
-			<?php foreach ($model->productsImages as $images): ?>
-                <div class="col-md-4 block-image-product-view">
-					<?= Html::img(Url::to($images->image_path), ['alt' => 'My logo']) ?>
-                </div>
-			<?php endforeach; ?>
+	<?php if (!empty($model->productsImages)): ?>
+        <div class="row">
+            <div class="admin-view-product-image">
+				<?php foreach ($model->productsImages as $images): ?>
+                    <div class="col-md-4 block-image-product-view">
+						<?= Html::img(Url::to($images->image_path), ['alt' => 'My logo']) ?>
+                    </div>
+				<?php endforeach; ?>
+            </div>
         </div>
-    </div>
+	<?php else: ?>
+        <h4>Картинок для данного продукта не найдено. Чтобы добавить картинки перейдите в раздел редактирования данного
+            продукта.</h4>
+	<?php endif; ?>
 </div>

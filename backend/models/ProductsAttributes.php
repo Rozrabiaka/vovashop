@@ -2,8 +2,6 @@
 
 namespace backend\models;
 
-use Yii;
-
 /**
  * This is the model class for table "products_attributes".
  *
@@ -55,7 +53,7 @@ class ProductsAttributes extends \yii\db\ActiveRecord
 		return [
 			[['product_id'], 'required'],
 			[['product_id'], 'integer'],
-			[['frame_number', 'engine_volume', 'engine_number', 'engine_type', 'cooling', 'max_power', 'max_engine_speed', 'compression_ratio', 'supply_system', 'ignition_system', 'launch_system', 'kpp', 'chassis', 'frame', 'front_suspension', 'ear_suspension', 'brakes', 'tires', 'dshv', 'wheelbase', 'seat_height', 'ground_clearance', 'dry_weight', 'fuel_tank_volume', 'maximum_speed'], 'string', 'max' => 255],
+			[['frame_number', 'engine_volume', 'engine_number', 'engine_type', 'cooling', 'max_power', 'max_engine_speed', 'supply_system', 'ignition_system', 'launch_system', 'kpp', 'frame', 'front_suspension', 'ear_suspension', 'brakes', 'tires', 'dshv', 'seat_height', 'ground_clearance', 'dry_weight', 'fuel_tank_volume', 'maximum_speed'], 'string', 'max' => 255],
 			[['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['product_id' => 'id']],
 		];
 	}
@@ -75,12 +73,10 @@ class ProductsAttributes extends \yii\db\ActiveRecord
 			'cooling' => 'Охлождение',
 			'max_power' => 'Макс. мощность',
 			'max_engine_speed' => 'Макс. крутящий момент',
-			'compression_ratio' => 'Степень сжатия',
 			'supply_system' => 'Сиcтема питания',
 			'ignition_system' => 'Система зажигания',
 			'launch_system' => 'Система пуска',
 			'kpp' => 'КПП / Главная передача',
-			'chassis' => 'Шасси',
 			'frame' => 'Рама',
 			'front_suspension' => 'Передняя подвеска',
 			'ear_suspension' => 'Задняя подвеска',
@@ -89,7 +85,7 @@ class ProductsAttributes extends \yii\db\ActiveRecord
 			'dshv' => 'ДхШхВ',
 			'wheelbase' => 'Колесная база',
 			'seat_height' => 'Высота по сидению',
-			'ground_clearance' => 'Дорожный просвет',
+			'ground_clearance' => 'Клиренс',
 			'dry_weight' => 'Сухой вес',
 			'fuel_tank_volume' => 'Обьем топливново бака',
 			'maximum_speed' => 'Максимальная скорость',

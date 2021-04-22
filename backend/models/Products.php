@@ -32,6 +32,8 @@ class Products extends \yii\db\ActiveRecord
 
 	public $image;
 
+	public $colors;
+
 	/**
 	 * {@inheritdoc}
 	 */
@@ -47,10 +49,11 @@ class Products extends \yii\db\ActiveRecord
 	{
 		return [
 			[['name', 'category_id', 'qty', 'description', 'date', 'user_added'], 'required'],
-			[['category_id', 'qty', 'model', 'product_status', 'user_added', 'dollar_price', 'color'], 'integer'],
+			[['category_id', 'qty', 'model', 'product_status', 'user_added', 'dollar_price'], 'integer'],
 			[['description'], 'string'],
 			[['date'], 'safe'],
 			[['price'], 'number'],
+			[['colors'], 'each', 'rule' => ['integer']],
 			[['name'], 'string', 'max' => 255],
 			[['image'], 'file', 'maxFiles' => 16, 'skipOnEmpty' => false],
 			[['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
@@ -75,7 +78,7 @@ class Products extends \yii\db\ActiveRecord
 			'description' => 'Описание',
 			'product_status' => 'Статус',
 			'date' => 'Дата',
-			'color' => 'Цвет',
+			'colors' => 'Цвета',
 			'user_added' => 'Пользователь',
 		];
 	}

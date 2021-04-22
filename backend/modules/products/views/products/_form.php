@@ -29,7 +29,7 @@ use kartik\file\FileInput;
 
 	<?= $form->field($model, 'model')->dropDownList($allMarks, ['prompt' => 'Пожалуйста, выберите значение']) ?>
 
-	<?= $form->field($model, 'color')->dropDownList($productColors, ['prompt' => 'Пожалуйста, выберите цвет']) ?>
+	<?= $form->field($model, 'colors')->checkboxList($productColors) ?>
 
 	<?= $form->field($model, 'price')->textInput() ?>
 
@@ -58,19 +58,16 @@ use kartik\file\FileInput;
         <div class="col-md-6"><?= $form->field($productAttributes, 'cooling')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'max_power')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'max_engine_speed')->textInput() ?></div>
-        <div class="col-md-6"><?= $form->field($productAttributes, 'compression_ratio')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'supply_system')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'ignition_system')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'launch_system')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'kpp')->textInput() ?></div>
-        <div class="col-md-6"><?= $form->field($productAttributes, 'chassis')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'frame')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'front_suspension')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'ear_suspension')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'brakes')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'tires')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'dshv')->textInput() ?></div>
-        <div class="col-md-6"><?= $form->field($productAttributes, 'wheelbase')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'seat_height')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'ground_clearance')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'dry_weight')->textInput() ?></div>

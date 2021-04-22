@@ -6,12 +6,12 @@ use backend\models\Categories;
 use backend\models\CourseDollar;
 use backend\models\Marks;
 use backend\models\ProductColors;
+use backend\models\ProductColorsRelations;
 use backend\models\ProductsAttributes;
 use backend\models\ProductsImage;
 use Yii;
 use backend\models\Products;
 use yii\data\ActiveDataProvider;
-use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -134,6 +134,23 @@ class ProductsController extends Controller
 						$productImageArray
 					)->execute();
 
+					//save colors to table
+					$choosedColors = Yii::$app->request->post('Products')['colors'];
+					if (!empty($choosedColors)) {
+						$colors = array();
+						foreach ($choosedColors as $color) {
+							$colors[] = array(
+								'color_id' => $color,
+								'product_id' => (int)$productId
+							);
+						}
+						Yii::$app->db->createCommand()->batchInsert(
+							ProductColorsRelations::tableName(),
+							['color_id', 'product_id'],
+							$colors
+						)->execute();
+					}
+
 					//save product attributes
 					$productAttributes->load(Yii::$app->request->post());
 					$productAttributes->product_id = $productId;
@@ -149,7 +166,6 @@ class ProductsController extends Controller
 		$modelCategories = new Categories();
 		$modelMarks = new Marks();
 		$modelColors = new ProductColors();
-
 
 		$allCategories = $modelCategories->getArrayDropDownCategories();
 		$allMarks = $modelMarks->getArrayDropDownMarks();
@@ -224,13 +240,28 @@ class ProductsController extends Controller
 			if (file_exists(Yii::getAlias('@frontend') . '/web' . $data['image_path'])) {
 				unlink(Yii::getAlias('@frontend') . '/web' . $data['image_path']);
 			}
-
-			$delete = \Yii::$app
-				->db
-				->createCommand()
-				->delete('products_image', ['id' => $data['id']])
-				->execute();
 		}
+
+		//delete images
+		\Yii::$app
+			->db
+			->createCommand()
+			->delete('products_image', ['product_id' => $id])
+			->execute();
+
+		//delete relation attributes
+		\Yii::$app
+			->db
+			->createCommand()
+			->delete('products_attributes', ['product_id' => $id])
+			->execute();
+
+		//delete relation colors
+		\Yii::$app
+			->db
+			->createCommand()
+			->delete('product_colors_relations', ['product_id' => $id])
+			->execute();
 
 		$this->findModel($id)->delete();
 
