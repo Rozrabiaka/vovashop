@@ -133,6 +133,11 @@ class Products extends \yii\db\ActiveRecord
 		return ArrayHelper::getColumn($this->productsImages, 'image_path');
 	}
 
+	public function getProductsAttributesMultiple()
+	{
+		return $this->hasMany(ProductsAttributesMultiple::className(), ['product_id' => 'id']);
+	}
+
 	public function getImagesLinksData()
 	{
 		return ArrayHelper::toArray($this->productsImages, [

@@ -17,9 +17,7 @@ class m210415_131713_product_attributes extends Migration
 		$this->createTable('{{%products_attributes}}', [
 			'id' => $this->primaryKey(),
 			'product_id' => $this->integer(11)->notNull(),
-			'frame_number' => $this->string()->null(),//номер рамы for example LTF12354896245RHDK
 			'engine_volume' => $this->string()->null(), //обьем двигателя
-			'engine_number' => $this->string()->null(), // номер двигателя
 			'engine_type' => $this->string()->null(), // тип двигателя
 			'cooling' => $this->string()->null(), // охлождение
 			'max_power' => $this->string()->null(), // макс мощность

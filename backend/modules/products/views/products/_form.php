@@ -1,5 +1,6 @@
 <?php
 
+use unclead\multipleinput\MultipleInput;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
@@ -13,12 +14,13 @@ use kartik\file\FileInput;
 /* @var $productStatus backend\modules\products\controllers\ProductsController */
 /* @var $productColors backend\modules\products\controllers\ProductsController */
 /* @var $productAttributes backend\models\ProductsAttributes */
+/* @var $modelProductsAttributesMultiple backend\models\ProductsAttributesMultiple */
 ?>
 
 <div class="products-form">
 
 	<?php $form = ActiveForm::begin([
-		'options' => ['enctype' => 'multipart/form-data'] // important
+		'options' => ['enctype' => 'multipart/form-data'],
 	]); ?>
 
 	<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
@@ -51,9 +53,19 @@ use kartik\file\FileInput;
         </svg>
     </h4>
     <div class="product-attributes row">
-        <div class="col-md-6"><?= $form->field($productAttributes, 'frame_number')->textInput() ?></div>
+        <div class="col-md-6">
+			<?= $form->field($modelProductsAttributesMultiple, 'frame_number')->widget(MultipleInput::className(), [
+				'min' => 1,
+			]);
+			?>
+        </div>
+        <div class="col-md-6">
+			<?= $form->field($modelProductsAttributesMultiple, 'engine_number')->widget(MultipleInput::className(), [
+				'min' => 1,
+			]);
+			?>
+        </div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'engine_volume')->textInput() ?></div>
-        <div class="col-md-6"><?= $form->field($productAttributes, 'engine_number')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'engine_type')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'cooling')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'max_power')->textInput() ?></div>

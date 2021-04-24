@@ -13,7 +13,6 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="products-view">
-
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
@@ -71,22 +70,8 @@ $this->params['breadcrumbs'][] = $this->title;
 				},
 			],
 			[
-				'attribute' => 'frame_number',
-				'label' => 'Номер рамы',
-				'value' => function ($model) {
-					return $model->productsAttributes[0]->frame_number;
-				},
-			],
-			[
 				'attribute' => 'engine_volume',
 				'label' => 'Объем двигателя',
-				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
-				},
-			],
-			[
-				'attribute' => 'engine_number',
-				'label' => 'Номер двигателя',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->engine_volume;
 				},
@@ -95,159 +80,158 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'engine_type',
 				'label' => 'Тип двигателя',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->engine_type;
 				},
 			],
 			[
 				'attribute' => 'cooling',
 				'label' => 'Охлождение',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->cooling;
 				},
 			],
 			[
 				'attribute' => 'max_power',
 				'label' => 'Макс. мощность',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->max_power;
 				},
 			],
 			[
 				'attribute' => 'max_engine_speed',
 				'label' => 'Макс. крутящий момент',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
-				},
-			],
-			[
-				'attribute' => 'compression_ratio',
-				'label' => 'Степень сжатия',
-				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->max_engine_speed;
 				},
 			],
 			[
 				'attribute' => 'supply_system',
 				'label' => 'Сиcтема питания',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->supply_system;
 				},
 			],
 			[
 				'attribute' => 'ignition_system',
 				'label' => 'Система зажигания',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->ignition_system;
 				},
 			],
 			[
 				'attribute' => 'launch_system',
 				'label' => 'Система пуска',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->launch_system;
 				},
 			],
 			[
 				'attribute' => 'kpp',
 				'label' => 'КПП / Главная передача',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
-				},
-			],
-			[
-				'attribute' => 'chassis',
-				'label' => 'Шасси',
-				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->kpp;
 				},
 			],
 			[
 				'attribute' => 'frame',
 				'label' => 'Рама',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->frame;
 				},
 			],
 			[
 				'attribute' => 'front_suspension',
 				'label' => 'Передняя подвеска',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->front_suspension;
 				},
 			],
 			[
 				'attribute' => 'ear_suspension',
 				'label' => 'Задняя подвеска',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->ear_suspension;
 				},
 			],
 			[
 				'attribute' => 'brakes',
 				'label' => 'Тормоза, передний / задний',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->brakes;
 				},
 			],
 			[
 				'attribute' => 'tires',
 				'label' => 'Шины, передняя / задняя',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->tires;
 				},
 			],
 			[
 				'attribute' => 'dshv',
 				'label' => 'ДхШхВ',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
-				},
-			],
-			[
-				'attribute' => 'wheelbase',
-				'label' => 'Колесная база',
-				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->dshv;
 				},
 			],
 			[
 				'attribute' => 'seat_height',
 				'label' => 'Высота по сидению',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->seat_height;
 				},
 			],
 			[
 				'attribute' => 'ground_clearance',
 				'label' => 'Дорожный просвет',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->ground_clearance;
 				},
 			],
 			[
 				'attribute' => 'dry_weight',
 				'label' => 'Сухой вес',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->dry_weight;
 				},
 			],
 			[
 				'attribute' => 'fuel_tank_volume',
 				'label' => 'Обьем топливново бака',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->fuel_tank_volume;
 				},
 			],
 			[
 				'attribute' => 'maximum_speed',
 				'label' => 'Максимальная скорость',
 				'value' => function ($model) {
-					return $model->productsAttributes[0]->engine_volume;
+					return $model->productsAttributes[0]->maximum_speed;
 				},
 			],
 		],
 	]) ?>
 
+	<?php if (!empty($model->productsAttributesMultiple)): ?>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Номер рамы</th>
+                <th scope="col">Номер двигателя</th>
+            </tr>
+            </thead>
+            <tbody>
+			<?php foreach ($model->productsAttributesMultiple as $data): ?>
+                <tr>
+                    <td><?php echo $data->frame_number ?></td>
+                    <td><?php echo $data->engine_number ?></td>
+                </tr>
+			<?php endforeach; ?>
+            </tbody>
+        </table>
+	<?php else: ?>
+        <h4>Не удалось найти информацию по данным "Номер рамы", "Номер двигателя".</h4>
+	<?php endif; ?>
 	<?php if (!empty($model->productsImages)): ?>
         <div class="row">
             <div class="admin-view-product-image">

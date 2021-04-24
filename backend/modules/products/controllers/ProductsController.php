@@ -8,6 +8,7 @@ use backend\models\Marks;
 use backend\models\ProductColors;
 use backend\models\ProductColorsRelations;
 use backend\models\ProductsAttributes;
+use backend\models\ProductsAttributesMultiple;
 use backend\models\ProductsImage;
 use Yii;
 use backend\models\Products;
@@ -83,13 +84,12 @@ class ProductsController extends Controller
 		$model = new Products();
 		$productsImage = new ProductsImage();
 		$productAttributes = new ProductsAttributes();
+		$modelProductsAttributesMultiple = new ProductsAttributesMultiple();
 
 		if ($model->load(Yii::$app->request->post())) {
-
 			if (Yii::$app->request->post('Products')['subcategory_id'] == 'prompt') $model->subcategory_id = null;
 			if (!empty(Yii::$app->request->post('Products')['dollar_price'])) {
 				$dollarsInDollars = Yii::$app->request->post('Products')['dollar_price'];
-
 				$courseModel = new CourseDollar();
 				$course = $courseModel->getCourse();
 				if (is_null($course)) {
@@ -98,14 +98,12 @@ class ProductsController extends Controller
 				}
 
 				$uaPrice = $dollarsInDollars * $course;
-
 				$model->price = $uaPrice;
 			}
 
 			$model->date = date("Y-m-d H:i:s");
 			$model->user_added = Yii::$app->user->id;
 			$model->image = UploadedFile::getInstances($model, 'image');
-			$model->price = $uaPrice;
 
 			if ($model->save()) {
 				if (!is_null($model->image)) {
@@ -155,6 +153,32 @@ class ProductsController extends Controller
 					$productAttributes->load(Yii::$app->request->post());
 					$productAttributes->product_id = $productId;
 					$productAttributes->save();
+
+					if (!empty(Yii::$app->request->post('ProductsAttributesMultiple'))) {
+						$postMultipleAttributesData = Yii::$app->request->post('ProductsAttributesMultiple');
+						$multipleAttributes = array();
+						$i = 0;
+						foreach ($postMultipleAttributesData as $key => $attributesData) {
+							foreach ($attributesData as $data) {
+								if ($key == 'frame_number') {
+									$multipleAttributes[] = array(
+										'product_id' => $productId,
+										'frame_number' => $data,
+									);
+								}
+								if ($key == 'engine_number') {
+									$multipleAttributes[$i]['engine_number'] = $data;
+									$i++;
+								}
+							}
+						}
+
+						Yii::$app->db->createCommand()->batchInsert(
+							ProductsAttributesMultiple::tableName(),
+							['product_id', 'frame_number', 'engine_number'],
+							$multipleAttributes
+						)->execute();
+					}
 				}
 
 				return $this->redirect(['view', 'id' => $model->id]);
@@ -182,6 +206,7 @@ class ProductsController extends Controller
 			'allCategories' => $allCategories,
 			'productColors' => $productColors,
 			'productAttributes' => $productAttributes,
+			'modelProductsAttributesMultiple' => $modelProductsAttributesMultiple,
 			'model' => $model,
 		]);
 	}
@@ -196,12 +221,17 @@ class ProductsController extends Controller
 	public function actionUpdate($id)
 	{
 		$model = $this->findModel($id);
+		$productAttributes = ProductsAttributes::find()->where(['product_id' => $id])->one();
 
-//		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//			return $this->redirect(['view', 'id' => $model->id]);
-//		}
+		if (!empty(Yii::$app->request->post())) {
 
-		$productAttributes = new ProductsAttributes();
+			//update product attributes
+			$productAttributes->load(Yii::$app->request->post());
+			$productAttributes->update();
+
+			return $this->redirect(['view', 'id' => $id]);
+		}
+
 		$modelCategories = new Categories();
 		$modelColors = new ProductColors();
 		$modelMarks = new Marks();
@@ -261,6 +291,13 @@ class ProductsController extends Controller
 			->db
 			->createCommand()
 			->delete('product_colors_relations', ['product_id' => $id])
+			->execute();
+
+		//delete multiple attributes
+		\Yii::$app
+			->db
+			->createCommand()
+			->delete('products_attributes_multiple', ['product_id' => $id])
 			->execute();
 
 		$this->findModel($id)->delete();

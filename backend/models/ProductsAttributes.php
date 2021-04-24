@@ -7,9 +7,7 @@ namespace backend\models;
  *
  * @property int $id
  * @property int $product_id
- * @property string|null $frame_number
  * @property int|null $engine_volume
- * @property int|null $engine_number
  * @property string|null $engine_type
  * @property string|null $cooling
  * @property string|null $max_power
@@ -53,7 +51,7 @@ class ProductsAttributes extends \yii\db\ActiveRecord
 		return [
 			[['product_id'], 'required'],
 			[['product_id'], 'integer'],
-			[['frame_number', 'engine_volume', 'engine_number', 'engine_type', 'cooling', 'max_power', 'max_engine_speed', 'supply_system', 'ignition_system', 'launch_system', 'kpp', 'frame', 'front_suspension', 'ear_suspension', 'brakes', 'tires', 'dshv', 'seat_height', 'ground_clearance', 'dry_weight', 'fuel_tank_volume', 'maximum_speed'], 'string', 'max' => 255],
+			[['engine_volume', 'engine_type', 'cooling', 'max_power', 'max_engine_speed', 'supply_system', 'ignition_system', 'launch_system', 'kpp', 'frame', 'front_suspension', 'ear_suspension', 'brakes', 'tires', 'dshv', 'seat_height', 'ground_clearance', 'dry_weight', 'fuel_tank_volume', 'maximum_speed'], 'string', 'max' => 255],
 			[['product_id'], 'exist', 'skipOnError' => true, 'targetClass' => Products::className(), 'targetAttribute' => ['product_id' => 'id']],
 		];
 	}
@@ -66,9 +64,7 @@ class ProductsAttributes extends \yii\db\ActiveRecord
 		return [
 			'id' => 'ID',
 			'product_id' => 'Product ID',
-			'frame_number' => 'Номер рамы',
 			'engine_volume' => 'Объем двигателя',
-			'engine_number' => 'Номер двигателя',
 			'engine_type' => 'Тип двигателя',
 			'cooling' => 'Охлождение',
 			'max_power' => 'Макс. мощность',

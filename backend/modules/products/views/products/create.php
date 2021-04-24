@@ -10,6 +10,7 @@ use yii\helpers\Html;
 /* @var $productsImage backend\modules\products\controllers\ProductsController */
 /* @var $productColors backend\modules\products\controllers\ProductsController */
 /* @var $productAttributes backend\modules\products\controllers\ProductsController */
+/* @var $modelProductsAttributesMultiple backend\modules\products\controllers\ProductsController */
 
 $this->title = 'Создать Продукт';
 $this->params['breadcrumbs'][] = ['label' => 'Продукты', 'url' => ['index']];
@@ -26,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		'allMarks' => $allMarks,
 		'allCategories' => $allCategories,
 		'productAttributes' => $productAttributes,
+		'modelProductsAttributesMultiple' => $modelProductsAttributesMultiple,
 		'model' => $model,
 	]) ?>
 </div>
