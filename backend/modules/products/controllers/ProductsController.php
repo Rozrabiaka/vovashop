@@ -222,8 +222,13 @@ class ProductsController extends Controller
 	{
 		$model = $this->findModel($id);
 		$productAttributes = ProductsAttributes::find()->where(['product_id' => $id])->one();
+		$modelProductsAttributesMultiple = ProductsAttributesMultiple::find()->select(['frame_number', 'id'])->where(['product_id' => $id])->one();
 
 		if (!empty(Yii::$app->request->post())) {
+			//TODO save NEW images
+
+			//TODO update category and subcategory
+			//TODO update colors
 
 			//update product attributes
 			$productAttributes->load(Yii::$app->request->post());
@@ -249,6 +254,7 @@ class ProductsController extends Controller
 			'productColors' => $productColors,
 			'allCategories' => $allCategories,
 			'productStatus' => $productStatus,
+			'modelProductsAttributesMultiple' => $modelProductsAttributesMultiple,
 			'productAttributes' => $productAttributes,
 			'model' => $model,
 		]);

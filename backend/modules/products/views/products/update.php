@@ -7,6 +7,7 @@ use yii\helpers\Html;
 /* @var $allCategories backend\modules\categories\controllers\CategoriesController */
 /* @var $allMarks backend\modules\marks\controllers\MarksController */
 /* @var $productStatus backend\models\Products */
+/* @var $modelProductsAttributesMultiple backend\models\ProductsAttributesMultiple */
 /* @var $productColors backend\modules\productColors\controllers\ProductcolorsController */
 /* @var $productAttributes backend\modules\products\controllers\ProductsController */
 /* @var $imageArray backend\modules\products\controllers\ProductsController */
@@ -26,6 +27,7 @@ $this->params['breadcrumbs'][] = 'Редактировать';
 		'productStatus' => $productStatus,
 		'productColors' => $productColors,
 		'productAttributes' => $productAttributes,
+		'modelProductsAttributesMultiple' => $modelProductsAttributesMultiple,
 		'model' => $model,
 	]) ?>
 
