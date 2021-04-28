@@ -5,6 +5,7 @@ namespace backend\modules\productcolors\controllers;
 use Yii;
 use backend\models\ProductColors;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,6 +27,16 @@ class ProductcolorsController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'actions' => ['index', 'view', 'create', 'update', 'delete'],
+						'allow' => true,
+						'roles' => ['administrator', 'moderator'],
+					]
+				]
+			]
         ];
     }
 

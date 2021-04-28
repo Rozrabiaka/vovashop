@@ -7,6 +7,7 @@ use backend\models\RelationsCategory;
 use backend\models\Subcategories;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 
@@ -27,6 +28,16 @@ class RelationscategoryController extends Controller
 					'delete' => ['POST'],
 				],
 			],
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'actions' => ['index', 'view', 'create', 'update', 'delete'],
+						'allow' => true,
+						'roles' => ['administrator', 'moderator'],
+					]
+				]
+			]
 		];
 	}
 

@@ -7,6 +7,7 @@ use backend\models\RelationsCategory;
 use Yii;
 use backend\models\Subcategories;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -28,6 +29,16 @@ class SubcategoriesController extends Controller
 					'delete' => ['POST'],
 				],
 			],
+			'access' => [
+				'class' => AccessControl::className(),
+				'rules' => [
+					[
+						'actions' => ['index', 'view', 'create', 'update', 'delete'],
+						'allow' => true,
+						'roles' => ['administrator', 'moderator'],
+					]
+				]
+			]
 		];
 	}
 

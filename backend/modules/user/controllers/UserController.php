@@ -1,9 +1,10 @@
 <?php
 
-namespace backend\modules\marks\controllers;
+namespace backend\modules\user\controllers;
 
+use backend\models\CreateUser;
 use Yii;
-use backend\models\Marks;
+use common\models\user;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -11,9 +12,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * MarksController implements the CRUD actions for Marks model.
+ * UserController implements the CRUD actions for user model.
  */
-class MarksController extends Controller
+class UserController extends Controller
 {
 	/**
 	 * {@inheritdoc}
@@ -33,7 +34,7 @@ class MarksController extends Controller
 					[
 						'actions' => ['index', 'view', 'create', 'update', 'delete'],
 						'allow' => true,
-						'roles' => ['administrator', 'moderator'],
+						'roles' => ['administrator'],
 					]
 				]
 			]
@@ -41,13 +42,13 @@ class MarksController extends Controller
 	}
 
 	/**
-	 * Lists all Marks models.
+	 * Lists all user models.
 	 * @return mixed
 	 */
 	public function actionIndex()
 	{
 		$dataProvider = new ActiveDataProvider([
-			'query' => Marks::find(),
+			'query' => user::find(),
 		]);
 
 		return $this->render('index', [
@@ -56,7 +57,7 @@ class MarksController extends Controller
 	}
 
 	/**
-	 * Displays a single Marks model.
+	 * Displays a single user model.
 	 * @param integer $id
 	 * @return mixed
 	 * @throws NotFoundHttpException if the model cannot be found
@@ -69,33 +70,29 @@ class MarksController extends Controller
 	}
 
 	/**
-	 * Creates a new Marks model.
+	 * Creates a new user model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 * @return mixed
 	 */
 	public function actionCreate()
 	{
-		$model = new Marks();
+		$model = new CreateUser();
+		$userModel = new User();
+		$roles = $userModel->getRolesDropDown();
 
-		if (!empty(Yii::$app->request->post())) {
-			if (is_null($model->issetMarkNyName(Yii::$app->request->post('Marks')['name']))) {
-				if ($model->load(Yii::$app->request->post()) && $model->save()) {
-					return $this->redirect(['view', 'id' => $model->id]);
-				} else {
-					Yii::$app->getSession()->setFlash('error', 'Ошибка при создание марки. Пожалуйста, попробуйте сново.');
-				}
-			} else {
-				Yii::$app->getSession()->setFlash('error', 'Марка с таким именем уже существует.');
-			}
+		if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+			Yii::$app->getSession()->setFlash('success', 'Пользователь был успешно создан.');
+			return $this->redirect(['/user/user']);
 		}
 
 		return $this->render('create', [
+			'roles' => $roles,
 			'model' => $model,
 		]);
 	}
 
 	/**
-	 * Updates an existing Marks model.
+	 * Updates an existing user model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id
 	 * @return mixed
@@ -104,23 +101,26 @@ class MarksController extends Controller
 	public function actionUpdate($id)
 	{
 		$model = $this->findModel($id);
+
 		if (!empty(Yii::$app->request->post())) {
-			if (is_null($model->issetMarkNyName(Yii::$app->request->post('Marks')['name']))) {
-				if ($model->load(Yii::$app->request->post()) && $model->save()) {
-					return $this->redirect(['view', 'id' => $model->id]);
-				}
-			} else {
-				Yii::$app->getSession()->setFlash('error', 'Марка с таким именем уже существует.');
-			}
+			$postData = Yii::$app->request->post('User');
+			$model->username = $postData['username'];
+			$model->role = $postData['role'];
+			$model->save();
+
+			return $this->redirect(['view', 'id' => $model->id]);
 		}
 
+		$roles = $model->getRolesDropDown();
+
 		return $this->render('update', [
+			'roles' => $roles,
 			'model' => $model,
 		]);
 	}
 
 	/**
-	 * Deletes an existing Marks model.
+	 * Deletes an existing user model.
 	 * If deletion is successful, the browser will be redirected to the 'index' page.
 	 * @param integer $id
 	 * @return mixed
@@ -134,15 +134,15 @@ class MarksController extends Controller
 	}
 
 	/**
-	 * Finds the Marks model based on its primary key value.
+	 * Finds the user model based on its primary key value.
 	 * If the model is not found, a 404 HTTP exception will be thrown.
 	 * @param integer $id
-	 * @return Marks the loaded model
+	 * @return user the loaded model
 	 * @throws NotFoundHttpException if the model cannot be found
 	 */
 	protected function findModel($id)
 	{
-		if (($model = Marks::findOne($id)) !== null) {
+		if (($model = user::findOne($id)) !== null) {
 			return $model;
 		}
 

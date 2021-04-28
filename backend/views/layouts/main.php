@@ -44,6 +44,7 @@ AppAsset::register($this);
 		$menuItems[] = ['label' => 'Продукты', 'url' => ['/products/products']];
 		$menuItems[] = ['label' => 'Цвета', 'url' => ['/productcolors/productcolors']];
 		$menuItems[] = ['label' => 'Связи подкатегорий', 'url' => ['/relationscategory/relationscategory']];
+		$menuItems[] = ['label' => 'Пользователи', 'url' => ['/user/user']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
