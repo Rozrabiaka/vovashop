@@ -118,4 +118,19 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionProduct($id)
+    {
+        if (!empty($id)) {
+            $model = Products::findOne($id);
+            $this->getView()->registerCssFile("@web/css/swiper.min.css");
+            $this->getView()->registerJsFile("@web/js/swiper.min.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
+            $this->getView()->registerJsFile("@web/js/swiper-product.js", ['depends' => [\yii\web\JqueryAsset::className()]]);
+
+            return $this->render('product', [
+                'model' => $model,
+            ]);
+        }
+        // throw new NotFoundHttpException('The requested page does not exist.');
+    }
 }

@@ -120,9 +120,9 @@ a.desc:after {
     border: none;
 }
 
-@media(max-width:767px) {
+@media (max-width: 767px) {
     .nav li > form > button.logout {
-        display:block;
+        display: block;
         text-align: left;
         width: 100%;
         padding: 10px 15px;
@@ -139,13 +139,14 @@ a.desc:after {
 }
 
 /* старт блока loading */
-#overlay{
+#overlay {
     position: absolute;
     z-index: 100;
     top: 50%;
-    left:45%;
+    left: 45%;
     display: none;
 }
+
 .cv-spinner {
     height: 100%;
     display: flex;
@@ -153,6 +154,7 @@ a.desc:after {
     align-items: center;
     margin-top: 20px;
 }
+
 .spinner {
     width: 40px;
     height: 40px;
@@ -161,25 +163,29 @@ a.desc:after {
     border-radius: 50%;
     animation: sp-anime 0.8s infinite linear;
 }
+
 @keyframes sp-anime {
     100% {
         transform: rotate(360deg);
     }
 }
-.is-hide{
-    display:none;
+
+.is-hide {
+    display: none;
 }
 
 /* конец блока loading */
 
 /* attributes show*/
-.product-attributes{
-    display:none;
+.product-attributes {
+    display: none;
 }
-.product-attributes-show{
+
+.product-attributes-show {
     cursor: pointer;
 }
-.block-image-product-view img{
-    width:100%;
-    height:300px;
+
+.block-image-product-view img {
+    width: 100%;
+    height: 300px;
 }

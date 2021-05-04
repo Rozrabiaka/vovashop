@@ -135,13 +135,13 @@ $this->title = 'ZEMISMOTO Главная страница';
                         <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5 product">
                             <div class="product-inner">
                                 <div class="thumb">
-                                    <a href="single-product.html" class="image">
+                                    <a href="/site/product?id=<?php echo $data['id'] ?>" class="image">
                                         <img class="first-image" src="<?php echo $data['image_path'] ?>"
                                              alt="Product"/>
                                     </a>
                                 </div>
                                 <div class="content">
-                                    <h5 class="title"><a href="single-product.html"><?php echo $data['name'] ?></a>
+                                    <h5 class="title"><a href="/site/product?id=<?php echo $data['id'] ?>"><?php echo $data['name'] ?></a>
                                     </h5>
                                     <span class="price">
                                             <span class="new">$<?php echo $data['price'] ?></span>
