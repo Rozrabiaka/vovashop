@@ -27,131 +27,143 @@ use yii\helpers\ArrayHelper;
 class Products extends \yii\db\ActiveRecord
 {
 
-	CONST PRODUCT_ACTIVE = 1;
-	CONST PRODUCT_INACTIVE = 0;
+    const PRODUCT_ACTIVE = 1;
+    const PRODUCT_INACTIVE = 0;
 
-	public $image;
+    public $image;
 
-	public $colors;
+    public $colors;
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public static function tableName()
-	{
-		return 'products';
-	}
+    public $color_id;
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function rules()
-	{
-		return [
-			[['name', 'category_id', 'qty', 'description', 'date', 'user_added'], 'required'],
-			[['category_id', 'qty', 'model', 'product_status', 'user_added', 'dollar_price'], 'integer'],
-			[['description'], 'string'],
-			[['date'], 'safe'],
-			[['price'], 'number'],
-			[['colors'], 'each', 'rule' => ['integer']],
-			[['name'], 'string', 'max' => 255],
-			[['image'], 'file', 'maxFiles' => 16, 'skipOnEmpty' => false],
-			[['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
-			[['subcategory_id'], 'exist', 'skipOnEmpty' => true, 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
-		];
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'products';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function attributeLabels()
-	{
-		return [
-			'id' => 'ID',
-			'name' => 'Название',
-			'category_id' => 'Категория',
-			'subcategory_id' => 'Подкатегория',
-			'price' => 'Цена в гривнах',
-			'dollar_price' => 'Цена в долларах',
-			'qty' => 'Количество',
-			'model' => 'Марка',
-			'description' => 'Описание',
-			'product_status' => 'Статус',
-			'date' => 'Дата',
-			'colors' => 'Цвета',
-			'user_added' => 'Пользователь',
-		];
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['name', 'category_id', 'qty', 'description', 'date', 'user_added'], 'required'],
+            [['category_id', 'qty', 'model', 'product_status', 'user_added', 'dollar_price'], 'integer'],
+            [['description'], 'string'],
+            [['date'], 'safe'],
+            [['price'], 'number'],
+            [['colors'], 'each', 'rule' => ['integer']],
+            [['name'], 'string', 'max' => 255],
+            [['image'], 'file', 'maxFiles' => 16, 'skipOnEmpty' => false],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
+            [['subcategory_id'], 'exist', 'skipOnEmpty' => true, 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
+        ];
+    }
 
-	/**
-	 * Gets query for [[Category]].
-	 *
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getCategory()
-	{
-		return $this->hasOne(Categories::className(), ['id' => 'category_id']);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Название',
+            'category_id' => 'Категория',
+            'subcategory_id' => 'Подкатегория',
+            'price' => 'Цена в гривнах',
+            'dollar_price' => 'Цена в долларах',
+            'qty' => 'Количество',
+            'model' => 'Марка',
+            'description' => 'Описание',
+            'product_status' => 'Статус',
+            'date' => 'Дата',
+            'colors' => 'Цвета',
+            'user_added' => 'Пользователь',
+        ];
+    }
 
-	/**
-	 * Gets query for [[Subcategory]].
-	 *
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getSubcategory()
-	{
-		return $this->hasOne(Subcategories::className(), ['id' => 'subcategory_id']);
-	}
+    /**
+     * Gets query for [[Category]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Categories::className(), ['id' => 'category_id']);
+    }
 
-	/**
-	 * Gets query for [[ProductsImages]].
-	 *
-	 * @return \yii\db\ActiveQuery
-	 */
-	public function getProductsImages()
-	{
-		return $this->hasMany(ProductsImage::className(), ['product_id' => 'id']);
-	}
+    /**
+     * Gets query for [[Subcategory]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSubcategory()
+    {
+        return $this->hasOne(Subcategories::className(), ['id' => 'subcategory_id']);
+    }
 
-	public function getUser()
-	{
-		return $this->hasMany(User::className(), ['id' => 'user_added']);
-	}
+    /**
+     * Gets query for [[ProductsImages]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductsImages()
+    {
+        return $this->hasMany(ProductsImage::className(), ['product_id' => 'id']);
+    }
 
-	public function getMarks()
-	{
-		return $this->hasMany(Marks::className(), ['id' => 'model']);
-	}
+    public function getUser()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_added']);
+    }
 
-	public function getProductsAttributes()
-	{
-		return $this->hasMany(ProductsAttributes::className(), ['product_id' => 'id']);
-	}
+    public function getMarks()
+    {
+        return $this->hasMany(Marks::className(), ['id' => 'model']);
+    }
 
-	public function getImagesLinks()
-	{
-		return ArrayHelper::getColumn($this->productsImages, 'image_path');
-	}
+    public function getProductColors()
+    {
+        return $this->hasMany(ProductColorsRelations::className(), ['product_id' => 'id']);
+    }
 
-	public function getProductsAttributesMultiple()
-	{
-		return $this->hasMany(ProductsAttributesMultiple::className(), ['product_id' => 'id']);
-	}
+    public function getColorName()
+    {
+        return $this->hasMany(ProductColors::className(), ['id' => 'color_id'])->via('productColors');
+    }
 
-	public function getImagesLinksData()
-	{
-		return ArrayHelper::toArray($this->productsImages, [
-			ProductsImage::className() => [
-				'key' => 'id'
-			]
-		]);
-	}
+    public function getProductsAttributes()
+    {
+        return $this->hasMany(ProductsAttributes::className(), ['product_id' => 'id']);
+    }
 
-	public function getStatusToDropDownList()
-	{
-		return array(
-			self::PRODUCT_ACTIVE => 'Активне',
-			self::PRODUCT_INACTIVE => 'Неактивен'
-		);
-	}
+    public function getImagesLinks()
+    {
+        return ArrayHelper::getColumn($this->productsImages, 'image_path');
+    }
+
+    public function getProductsAttributesMultiple()
+    {
+        return $this->hasMany(ProductsAttributesMultiple::className(), ['product_id' => 'id']);
+    }
+
+    public function getImagesLinksData()
+    {
+        return ArrayHelper::toArray($this->productsImages, [
+            ProductsImage::className() => [
+                'key' => 'id'
+            ]
+        ]);
+    }
+
+    public function getStatusToDropDownList()
+    {
+        return array(
+            self::PRODUCT_ACTIVE => 'Активне',
+            self::PRODUCT_INACTIVE => 'Неактивен'
+        );
+    }
 }
