@@ -42,8 +42,7 @@ AppAsset::register($this);
             ],
         ]);
         $menuItems = [
-            ['label' => 'О нас', 'url' => ['/site/about']],
-            ['label' => 'Обратная связь', 'url' => ['/site/contact']],
+            ['label' => 'О нас', 'url' => ['/site/contact']],
             ['label' => 'Товар', 'url' => ['/site/products']],
             ['label' => '0 68 807 1420', 'url' => 'tel:0688071420'],
             ['label' => '<svg width="16" height="16" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
