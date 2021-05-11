@@ -220,7 +220,7 @@ class SiteController extends Controller
                 ->groupBy('products_image.product_id')
                 ->asArray(),
             'pagination' => [
-                'pageSize' => 2,
+                'pageSize' => 12,
             ],
             'sort' => [
                 'defaultOrder' => [
