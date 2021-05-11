@@ -191,11 +191,20 @@ class SiteController extends Controller
 
     public function actionProducts()
     {
+        $query = Products::find()->select(['products.id', 'products.name', 'products.price', 'products_image.image_path'])
+            ->andWhere(['product_status' => Products::PRODUCT_ACTIVE]);
+
+
+        if (!empty(Yii::$app->request->get('Search')['q'])) {
+            $query->andWhere(['like', 'products.name', Yii::$app->request->get('Search')['q']]);
+        }
+
+        $query->leftJoin('products_image', 'products.id = products_image.product_id')
+            ->groupBy('products_image.product_id')
+            ->asArray();
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Products::find()->select(['products.id', 'products.name', 'products.price', 'products_image.image_path'])->where(['product_status' => Products::PRODUCT_ACTIVE])
-                ->leftJoin('products_image', 'products.id = products_image.product_id')
-                ->groupBy('products_image.product_id')
-                ->asArray(),
+            'query' => $query,
             'pagination' => [
                 'pageSize' => 12,
             ],

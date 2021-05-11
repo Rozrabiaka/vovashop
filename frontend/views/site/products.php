@@ -69,6 +69,7 @@
                     'tag' => 'div',
                     'class' => 'shop_wrapper grid_4 row',
                 ],
+                'emptyText' => '<strong>Извините, нам не удалось найти товар(ы) по вашему запросу или его нету в наличии.</strong>',
                 'itemOptions' => [
                     'tag' => 'div',
                     'class' => 'col-xl-2 col-lg-3 col-md-3 col-sm-5 product',

@@ -1075,3 +1075,13 @@ a.desc:after {
 .checkout-button{
     text-align: center;
 }
+.header-actions .form-group{
+    margin-bottom:0 !important;
+}
+.search-li{
+    margin-top:-5px;
+    max-width: 250px;
+}
+.empty{
+    text-align: center;
+}
