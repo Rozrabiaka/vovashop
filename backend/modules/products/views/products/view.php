@@ -183,7 +183,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
 			[
 				'attribute' => 'ground_clearance',
-				'label' => 'Дорожный просвет',
+				'label' => 'Клиренс',
 				'value' => function ($model) {
 					return $model->productsAttributes[0]->ground_clearance;
 				},

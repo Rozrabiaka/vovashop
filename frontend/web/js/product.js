@@ -44,5 +44,14 @@
         },
     });
 
+    //show product information
+    jQuery('.nav-item').click(function (e) {
+        const child = jQuery(this).index();
+        //remove info active from others..
+        jQuery('.product-block-information > .product-info').removeClass("info-active")
+        //add to where index matches
+        jQuery('.product-block-information > .product-info:eq(' + child + ')').addClass('info-active');
+    })
+
 })(jQuery);
 

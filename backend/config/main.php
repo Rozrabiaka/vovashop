@@ -33,6 +33,9 @@ return [
 		'user' => [
 			'class' => 'backend\modules\user\Module',
 		],
+        'orders' => [
+            'class' => 'backend\modules\orders\Module',
+        ],
 	],
     'components' => [
         'request' => [

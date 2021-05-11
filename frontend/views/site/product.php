@@ -1,6 +1,7 @@
 <?php
 /* @var $model backend\models\Products */
 
+$this->title = 'ZEMISMOTO Продукт ' . $model->name;
 ?>
 
 <!-- Single Product Section Start -->
@@ -62,13 +63,19 @@
 
                     <!-- Price Box Start -->
                     <div class="price-box mb-2">
-                        <span class="regular-price"><?php echo $model->price ?></span>
+                        <span class="regular-price"><?php echo $model->price ?> грн.</span>
                     </div>
                     <!-- Price Box End -->
 
                     <!-- SKU Start -->
                     <div class="sku mb-3">
                         <span>Индификатор продукта: <?php echo $model->id ?></span>
+                    </div>
+                    <!-- SKU End -->
+
+                    <!-- SKU Start -->
+                    <div class="qty mb-3">
+                        <span>Количество продукта: <?php echo $model->qty ?></span>
                     </div>
                     <!-- SKU End -->
 
@@ -81,7 +88,7 @@
                         <select class="nice-select" aria-label=".form-select-sm example">
                             <option value="selected" disabled selected>Пожалуйста, выберите цвет.</option>
                             <?php foreach ($model->colorName as $colors): ?>
-                                <option value=<?php echo $colors->name ?>><?php echo $colors->name ?></option>
+                                <option value=<?php echo $colors->id ?>><?php echo $colors->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -98,7 +105,8 @@
                     <!-- Cart & Wishlist Button Start -->
                     <div class="cart-wishlist-btn mb-4">
                         <div class="add-to_cart">
-                            <a class="btn btn-outline-dark btn-hover-primary" href="cart.html">Add to cart</a>
+                            <a class="btn btn-outline-dark btn-hover-primary add-cart" id="<?php echo $model->id ?>">Add
+                                to cart</a>
                         </div>
                     </div>
                     <!-- Cart & Wishlist Button End -->
@@ -135,21 +143,155 @@
             <div class="col-lg-12 col-custom single-product-tab">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link text-uppercase" id="contact-tab" data-bs-toggle="tab" href="#connect-3"
-                           role="tab" aria-selected="false">Характеристики</a>
+                        <a class="nav-link text-uppercase contact-tab" data-bs-toggle="tab" href="#connect-2"
+                           role="tab" aria-selected="false">Политика доставки</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-uppercase" id="contact-tab" data-bs-toggle="tab" href="#connect-3"
-                           role="tab" aria-selected="false">Политика доставки</a>
+                        <a class="nav-link text-uppercase contact-tab" data-bs-toggle="tab" href="#connect-1"
+                           role="tab" aria-selected="false">Характеристики</a>
                     </li>
                 </ul>
 
                 <div class="product-block-information">
-                    <div>
-                        //harakteristiki here
+                    <div class="product-info info-active">
+                        <p> После того, как Покупатель выбрал и оплатил свой товар, Продавец передаст его сотрудникам
+                            Компании ZEMISMOTO logistics для организации доставки.</p>
+
+                        <p>После надлежащей подготовки к транспортировке, товар будет передан перевозчику. Стоит учесть,
+                            что с момента передачи перевозчику, адрес доставки, который указал Покупатель, не может быть
+                            изменен.</p>
+
+                        <p><strong>Важно! Покупатель несет полную и личную ответственность за верность указанного адреса
+                                доставки.</strong></p>
+
+                        <p><strong>ОПЛАТА!!!</strong></p>
+                        <p>К оплате принимаются как наличные, так и безналичные виды расчета.
+                            Оплата возможна наложенным платежом ,банковским переводом, денежными переводами и на
+                            расчетный
+                            счет предприятия.
+                            Компания производит процесс комплектования груза перед отправкой. По заказам, которые были
+                            оформлены в выходной день или государственный праздник Украины, комплектация грузов
+                            производится
+                            в следующий первый рабочий день.
+                        </p>
+                        <p><strong>ДОСТАВКА!!!</strong></p>
+                        <p>
+                            Доставка товара возможна по всей территории Украины. Осуществляется любой транспортной
+                            компанией по расценкам грузоперевозчика: Новая Почта, Delivery, Міст Експрес, либо курьером
+                            магазина(по тарифу 10грн за 1км) .
+                            Срок доставки зависит от времени, затраченного на оплату услуг Компании, на последующую
+                            комплектацию и доставку в пункт выдачи или по указанному Покупателем адресу.
+                        </p>
+
+                        <p><strong>Важно! Планируя дату получения посылки, учитывайте указанные сроки.</strong></p>
+                        <p>Право собственности на товар и ответственность за состояние товара переходят:
+                            к Покупателю от Компании с момента получения товара; или организации связи для доставки
+                            груза Покупателю.
+                            После получения заказа в пункте выдачи или по обозначенному адресу, Покупатель обязуется
+                            проверить целостности упаковки посылки, укомплектованной компанией, по месту выдачи в
+                            присутствии сотрудника компании-перевозчика или пункта выдачи.</p>
+
+                        <p><strong>Важно! В случае, если осмотр не будет произведен, Покупатель будет лишен права
+                                заявить о нарушении целостности упаковки.</strong></p>
+                        <p>Если в ходе осмотра обнаруживаются нарушения целостности упаковки, Покупатель обязуется
+                            составить Акт об этом инциденте в присутствии сотрудника компании-перевозчика или пункта
+                            выдачи. Акт должен быть подписан Покупателем и соответствующим сотрудником.
+                            Что касается вопросов несоответствия полученного товара изначально задекларированному
+                            количеству, ассортименту, сроку годности, сохранности упаковки, они решаются с Продавцом при
+                            наличии составленного должным образом заявления.</p>
+
+                        <p><strong>Важно! При выборе товара необходимо сохранить скриншот описания товара на странице
+                                интернет-магазина Продавца. Рекомендуется применить фото/видеосъемку при распаковке
+                                товара. Хранение сопутствующих доказательств, которые могут быть востребованы при
+                                осуществлении рекламаций заказа у Продавца, возлагается на Покупателя.</strong></p>
+                        <p>Если у вас есть вопросы касательно деталей доставки, обратитесь к специалистам по номеру
+                            +380688071420.</p>
                     </div>
-                    <div>
-                        // politica dostawki
+                    <div class="product-info">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th scope="row">Объем двигателя</th>
+                                <th scope="row"><?php echo $model->productsAttributes->engine_volume ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Тип двигателя</th>
+                                <th scope="row"><?php echo $model->productsAttributes->engine_type ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Охлождение</th>
+                                <th scope="row"><?php echo $model->productsAttributes->cooling ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Макс. мощность</th>
+                                <th scope="row"><?php echo $model->productsAttributes->max_power ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Макс. крутящий момент</th>
+                                <th scope="row"><?php echo $model->productsAttributes->max_engine_speed ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Сиcтема питания</th>
+                                <th scope="row"><?php echo $model->productsAttributes->supply_system ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Система зажигания</th>
+                                <th scope="row"><?php echo $model->productsAttributes->ignition_system ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Система пуска</th>
+                                <th scope="row"><?php echo $model->productsAttributes->launch_system ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">КПП / Главная передача</th>
+                                <th scope="row"><?php echo $model->productsAttributes->kpp ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Передняя подвеска</th>
+                                <th scope="row"><?php echo $model->productsAttributes->front_suspension ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Задняя подвеска</th>
+                                <th scope="row"><?php echo $model->productsAttributes->ear_suspension ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Тормоза, передний / задний</th>
+                                <th scope="row"><?php echo $model->productsAttributes->brakes ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Шины, передняя / задняя</th>
+                                <th scope="row"><?php echo $model->productsAttributes->tires ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">ДхШхВ</th>
+                                <th scope="row"><?php echo $model->productsAttributes->dshv ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Колесная база</th>
+                                <th scope="row"><?php echo $model->productsAttributes->wheelbase ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Высота по сидению</th>
+                                <th scope="row"><?php echo $model->productsAttributes->seat_height ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Клиренс</th>
+                                <th scope="row"><?php echo $model->productsAttributes->ground_clearance ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Сухой вес</th>
+                                <th scope="row"><?php echo $model->productsAttributes->dry_weight ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Обьем топливново бака</th>
+                                <th scope="row"><?php echo $model->productsAttributes->fuel_tank_volume ?></th>
+                            </tr>
+                            <tr>
+                                <th scope="row">Максимальная скорость</th>
+                                <th scope="row"><?php echo $model->productsAttributes->maximum_speed ?></th>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <!-- Single Product Tab End -->
@@ -157,3 +299,4 @@
         </div>
     </div>
     <!-- Single Product Section End -->
+</div>

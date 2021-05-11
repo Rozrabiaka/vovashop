@@ -1,10 +1,6 @@
 <?php
 
 /* @var $this yii\web\View */
-
-use yii\helpers\Html;
-use yii\helpers\Url;
-
 /* @var $products frontend\controllers\SiteController */
 
 $this->title = 'ZEMISMOTO Главная страница';
@@ -20,7 +16,7 @@ $this->title = 'ZEMISMOTO Главная страница';
                     <div class="hero-slide-item swiper-slide">
                         <!-- Hero Slider Bg Image Start -->
                         <div class="hero-slide-bg">
-                            <img src="images/slide-1.jpg" alt="Slider Image"/>
+                            <img src="images/header-image1.jpg" alt="Slider Image"/>
                         </div>
                         <!-- Hero Slider Bg image End -->
 
@@ -28,11 +24,11 @@ $this->title = 'ZEMISMOTO Главная страница';
                         <div class="container">
                             <div class="hero-slide-content">
                                 <h2 class="title">
-                                    Women New <br/>
-                                    Collection
+                                    ZEMISMOTO<br/>
+                                    Лучшее для вас
                                 </h2>
-                                <p>Up to 70% off selected Product</p>
-                                <a href="shop-grid.html" class="btn btn-lg btn-primary btn-hover-dark">Shop Now</a>
+                                <p>Лучший выбор мопедов и мотоциклов</p>
+                                <a href="shop-grid.html" class="btn btn-lg btn-primary btn-hover-dark">Купить сейчс</a>
                             </div>
                         </div>
                         <!-- Hero Slider Content End -->
@@ -52,11 +48,11 @@ $this->title = 'ZEMISMOTO Главная страница';
                         <div class="container">
                             <div class="hero-slide-content">
                                 <h2 class="title">
-                                    Trend Fashion<br/>
-                                    Collection
+                                    ZEMISMOTO<br/>
+                                    Сделай свою покупку
                                 </h2>
-                                <p>Up to 40% off selected Product</p>
-                                <a href="shop-grid.html" class="btn btn-lg btn-primary btn-hover-dark">Shop Now</a>
+                                <p>Доставим товар в любую точку Украины.</p>
+                                <a href="shop-grid.html" class="btn btn-lg btn-primary btn-hover-dark">Купить сейчас</a>
                             </div>
                         </div>
                         <!-- Hero Slider Content End -->
@@ -128,38 +124,38 @@ $this->title = 'ZEMISMOTO Главная страница';
                 <div class="col-sm-12">
                     <div class="title-products"><span class="title-products-span">Продукты</span></div>
                 </div>
-                <!-- Shop Wrapper Start -->
-                <div class="shop_wrapper grid_4">
-                    <!-- Single Product Start -->
-                    <?php foreach ($products as $data): ?>
-                        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5 product">
-                            <div class="product-inner">
-                                <div class="thumb">
-                                    <a href="/site/product?id=<?php echo $data['id'] ?>" class="image">
-                                        <img class="first-image" src="<?php echo $data['image_path'] ?>"
-                                             alt="Product"/>
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <h5 class="title"><a href="/site/product?id=<?php echo $data['id'] ?>"><?php echo $data['name'] ?></a>
-                                    </h5>
-                                    <span class="price">
-                                            <span class="new">$<?php echo $data['price'] ?></span>
+            </div>
+            <!-- Shop Wrapper Start -->
+            <div class="shop_wrapper grid_4">
+                <!-- Single Product Start -->
+                <?php foreach ($products as $data): ?>
+                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5 product">
+                        <div class="product-inner">
+                            <div class="thumb">
+                                <a href="/site/product?id=<?php echo $data['id'] ?>" class="image">
+                                    <img class="first-image" src="<?php echo $data['image_path'] ?>"
+                                         alt="Product"/>
+                                </a>
+                            </div>
+                            <div class="content">
+                                <h5 class="title"><a
+                                            href="/site/product?id=<?php echo $data['id'] ?>"><?php echo $data['name'] ?></a>
+                                </h5>
+                                <span class="price">
+                                            <span class="new"><?php echo $data['price'] ?> грн.</span>
                                     </span>
-                                    <div class="shop-list-btn">
-                                        <button class="btn btn-sm btn-outline-dark btn-hover-primary"
-                                                title="Add To Cart">
-                                            Add To Cart
-                                        </button>
-                                    </div>
+                                <div class="shop-list-btn">
+                                    <a class="btn btn-sm btn-outline-dark btn-hover-primary show-product"
+                                       href="/site/product?id=<?php echo $data['id'] ?>"> Просмотреть продкт</a>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
-                    <!-- Single Product End -->
-                </div>
-                <!-- Shop Wrapper End -->
+                    </div>
+                <?php endforeach; ?>
+                <!-- Single Product End -->
             </div>
+            <!-- Shop Wrapper End -->
         </div>
     </div>
     <!-- Shop Section End -->
+</div>
