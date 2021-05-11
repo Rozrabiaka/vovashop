@@ -7,7 +7,13 @@ body {
 ul {
     list-style-type: none;
 }
-
+.navbar-toggle{
+    background-color: #212121;
+    border: #212121;
+}
+.navbar-toggle .icon-bar{
+    background-color: #fff;
+}
 .wrap {
     min-height: 100%;
     height: auto;
@@ -945,12 +951,11 @@ a.desc:after {
     font-size: 12px;
     font-weight: 600;
     line-height: 15px;
-    position: absolute;
+    position: relative;
     z-index: 2;
-    top: 5px;
+    top: -10px;
     right: 0;
-    width: 15px;
-    height: 15px;
+    padding: 2px 5px;
     text-align: center;
     color: #fff;
     border-radius: 50%;
