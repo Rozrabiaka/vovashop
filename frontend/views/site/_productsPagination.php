@@ -18,7 +18,7 @@
                                     </span>
         <div class="shop-list-btn">
             <a class="btn btn-sm btn-outline-dark btn-hover-primary show-product"
-               href="/site/product?id=<?php echo $model['id'] ?>"> Просмотреть продкт</a>
+               href="/site/product?id=<?php echo $model['id'] ?>"> Посмотреть продукт</a>
         </div>
     </div>
 </div>

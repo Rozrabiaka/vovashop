@@ -1,5 +1,7 @@
 <?php
 /* @var $ordernumber frontend\controllers\SiteController */
+$this->title = 'ZEMISMOTO заказ номер ' . $ordernumber;
+
 ?>
 
 <!-- Single Product Section Start -->

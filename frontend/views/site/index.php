@@ -28,7 +28,7 @@ $this->title = 'ZEMISMOTO Главная страница';
                                     Лучшее для вас
                                 </h2>
                                 <p>Лучший выбор мопедов и мотоциклов</p>
-                                <a href="site/products" class="btn btn-lg btn-primary btn-hover-dark">Купить сейчс</a>
+                                <a href="site/products" class="btn btn-lg btn-primary btn-hover-dark">Купить сейчас</a>
                             </div>
                         </div>
                         <!-- Hero Slider Content End -->
@@ -147,7 +147,7 @@ $this->title = 'ZEMISMOTO Главная страница';
                                     </span>
                                 <div class="shop-list-btn">
                                     <a class="btn btn-sm btn-outline-dark btn-hover-primary show-product"
-                                       href="/site/product?id=<?php echo $data['id'] ?>"> Просмотреть продкт</a>
+                                       href="/site/product?id=<?php echo $data['id'] ?>"> Посмотреть продукт</a>
                                 </div>
                             </div>
                         </div>

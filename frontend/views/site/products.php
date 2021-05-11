@@ -1,5 +1,7 @@
 <?php
 /* @var $dataProvider frontend\controllers\SiteController */
+
+$this->title = 'ZEMISMOTO Список продуктов';
 ?>
 
 <div class="section">

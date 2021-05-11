@@ -17,11 +17,11 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                     <!-- Single Product Image Start -->
                     <div class="single-product-img swiper-container gallery-top">
                         <div class="swiper-wrapper popup-gallery">
-                            <?php foreach ($model->productsImages as $images): ?>
+							<?php foreach ($model->productsImages as $images): ?>
                                 <a class="swiper-slide w-100" href="<?php echo $images->image_path ?>">
                                     <img class="w-100" src="<?php echo $images->image_path ?>" alt="Product">
                                 </a>
-                            <?php endforeach; ?>
+							<?php endforeach; ?>
                         </div>
                     </div>
                     <!-- Single Product Image End -->
@@ -29,11 +29,11 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                     <!-- Single Product Thumb Start -->
                     <div class="single-product-thumb swiper-container gallery-thumbs">
                         <div class="swiper-wrapper">
-                            <?php foreach ($model->productsImages as $images): ?>
+							<?php foreach ($model->productsImages as $images): ?>
                                 <a class="swiper-slide" href="<?php echo $images->image_path ?>">
                                     <img src="<?php echo $images->image_path ?>" alt="Product">
                                 </a>
-                            <?php endforeach; ?>
+							<?php endforeach; ?>
                         </div>
 
                         <!-- Next Previous Button Start -->
@@ -87,9 +87,9 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                     <div class="shop-short-by mr-4">
                         <select class="nice-select" aria-label=".form-select-sm example">
                             <option value="selected" disabled selected>Пожалуйста, выберите цвет.</option>
-                            <?php foreach ($model->colorName as $colors): ?>
+							<?php foreach ($model->colorName as $colors): ?>
                                 <option value=<?php echo $colors->id ?>><?php echo $colors->name ?></option>
-                            <?php endforeach; ?>
+							<?php endforeach; ?>
                         </select>
                     </div>
                     <!-- end colors -->
@@ -105,8 +105,7 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                     <!-- Cart & Wishlist Button Start -->
                     <div class="cart-wishlist-btn mb-4">
                         <div class="add-to_cart">
-                            <a class="btn btn-outline-dark btn-hover-primary add-cart" id="<?php echo $model->id ?>">Add
-                                to cart</a>
+                            <a class="btn btn-outline-dark btn-hover-primary add-cart" id="<?php echo $model->id ?>">Добавить в корзину</a>
                         </div>
                     </div>
                     <!-- Cart & Wishlist Button End -->
@@ -207,92 +206,94 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                         <p>Если у вас есть вопросы касательно деталей доставки, обратитесь к специалистам по номеру
                             +380688071420.</p>
                     </div>
-                    <div class="product-info">
-                        <table class="table table-hover">
-                            <tbody>
-                            <tr>
-                                <th scope="row">Объем двигателя</th>
-                                <th scope="row"><?php echo $model->productsAttributes->engine_volume ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Тип двигателя</th>
-                                <th scope="row"><?php echo $model->productsAttributes->engine_type ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Охлождение</th>
-                                <th scope="row"><?php echo $model->productsAttributes->cooling ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Макс. мощность</th>
-                                <th scope="row"><?php echo $model->productsAttributes->max_power ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Макс. крутящий момент</th>
-                                <th scope="row"><?php echo $model->productsAttributes->max_engine_speed ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Сиcтема питания</th>
-                                <th scope="row"><?php echo $model->productsAttributes->supply_system ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Система зажигания</th>
-                                <th scope="row"><?php echo $model->productsAttributes->ignition_system ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Система пуска</th>
-                                <th scope="row"><?php echo $model->productsAttributes->launch_system ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">КПП / Главная передача</th>
-                                <th scope="row"><?php echo $model->productsAttributes->kpp ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Передняя подвеска</th>
-                                <th scope="row"><?php echo $model->productsAttributes->front_suspension ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Задняя подвеска</th>
-                                <th scope="row"><?php echo $model->productsAttributes->ear_suspension ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Тормоза, передний / задний</th>
-                                <th scope="row"><?php echo $model->productsAttributes->brakes ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Шины, передняя / задняя</th>
-                                <th scope="row"><?php echo $model->productsAttributes->tires ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">ДхШхВ</th>
-                                <th scope="row"><?php echo $model->productsAttributes->dshv ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Колесная база</th>
-                                <th scope="row"><?php echo $model->productsAttributes->wheelbase ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Высота по сидению</th>
-                                <th scope="row"><?php echo $model->productsAttributes->seat_height ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Клиренс</th>
-                                <th scope="row"><?php echo $model->productsAttributes->ground_clearance ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Сухой вес</th>
-                                <th scope="row"><?php echo $model->productsAttributes->dry_weight ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Обьем топливново бака</th>
-                                <th scope="row"><?php echo $model->productsAttributes->fuel_tank_volume ?></th>
-                            </tr>
-                            <tr>
-                                <th scope="row">Максимальная скорость</th>
-                                <th scope="row"><?php echo $model->productsAttributes->maximum_speed ?></th>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+					<?php if (!empty($model->productsAttributes[0])): ?>
+                        <div class="product-info">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th scope="row">Объем двигателя</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->engine_volume ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Тип двигателя</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->engine_type ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Охлождение</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->cooling ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Макс. мощность</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->max_power ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Макс. крутящий момент</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->max_engine_speed ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Сиcтема питания</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->supply_system ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Система зажигания</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->ignition_system ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Система пуска</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->launch_system ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">КПП / Главная передача</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->kpp ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Передняя подвеска</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->front_suspension ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Задняя подвеска</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->ear_suspension ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Тормоза, передний / задний</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->brakes ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Шины, передняя / задняя</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->tires ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">ДхШхВ</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->dshv ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Высота по сидению</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->seat_height ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Клиренс</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->ground_clearance ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Сухой вес</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->dry_weight ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Обьем топливново бака</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->fuel_tank_volume ?></th>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Максимальная скорость</th>
+                                    <th scope="row"><?php echo $model->productsAttributes[0]->maximum_speed ?></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php else:?>
+                        <div class="product-info">
+                            <p>Не удалось найди характеристики данного продукта.</p>
+                        </div>
+					<?php endif; ?>
                 </div>
                 <!-- Single Product Tab End -->
             </div>

@@ -44,7 +44,7 @@ AppAsset::register($this);
         ]);
         $menuItems = [
             ['label' => 'О нас', 'url' => ['/site/contact']],
-            ['label' => 'Список товара', 'url' => ['/site/products']],
+            ['label' => 'Каталог', 'url' => ['/site/products']],
             ['label' => '0 68 807 1420', 'url' => 'tel:0688071420'],
             ['label' => SearchWidget::widget(),
                 'encode' => false,
