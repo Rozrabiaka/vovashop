@@ -115,6 +115,12 @@ class Products extends \yii\db\ActiveRecord
         return $this->hasMany(ProductsImage::className(), ['product_id' => 'id']);
     }
 
+    public function getProductImage()
+    {
+        return $this->hasOne(ProductsImage::className(), ['product_id' => 'id']);
+    }
+
+
     public function getUser()
     {
         return $this->hasMany(User::className(), ['id' => 'user_added']);

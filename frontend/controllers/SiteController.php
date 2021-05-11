@@ -5,9 +5,8 @@ namespace frontend\controllers;
 use backend\models\Orders;
 use backend\models\Products;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 use frontend\models\ContactForm;
 
 /**
@@ -15,37 +14,6 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
-                'rules' => [
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                        'roles' => ['?'],
-                    ],
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -242,5 +210,27 @@ class SiteController extends Controller
         }
 
         return $this->render('error');
+    }
+
+    public function actionProducts()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Products::find()->select(['products.id', 'products.name', 'products.price', 'products_image.image_path'])->where(['product_status' => Products::PRODUCT_ACTIVE])
+                ->leftJoin('products_image', 'products.id = products_image.product_id')
+                ->groupBy('products_image.product_id')
+                ->asArray(),
+            'pagination' => [
+                'pageSize' => 2,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC
+                ]
+            ],
+        ]);
+
+        return $this->render('products', [
+            'dataProvider' => $dataProvider
+        ]);
     }
 }

@@ -28,7 +28,7 @@ $this->title = 'ZEMISMOTO Главная страница';
                                     Лучшее для вас
                                 </h2>
                                 <p>Лучший выбор мопедов и мотоциклов</p>
-                                <a href="shop-grid.html" class="btn btn-lg btn-primary btn-hover-dark">Купить сейчс</a>
+                                <a href="site/products" class="btn btn-lg btn-primary btn-hover-dark">Купить сейчс</a>
                             </div>
                         </div>
                         <!-- Hero Slider Content End -->
@@ -52,7 +52,7 @@ $this->title = 'ZEMISMOTO Главная страница';
                                     Сделай свою покупку
                                 </h2>
                                 <p>Доставим товар в любую точку Украины.</p>
-                                <a href="shop-grid.html" class="btn btn-lg btn-primary btn-hover-dark">Купить сейчас</a>
+                                <a href="site/products" class="btn btn-lg btn-primary btn-hover-dark">Купить сейчас</a>
                             </div>
                         </div>
                         <!-- Hero Slider Content End -->
@@ -126,6 +126,7 @@ $this->title = 'ZEMISMOTO Главная страница';
                 </div>
             </div>
             <!-- Shop Wrapper Start -->
+
             <div class="shop_wrapper grid_4">
                 <!-- Single Product Start -->
                 <?php foreach ($products as $data): ?>
