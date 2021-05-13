@@ -64,7 +64,6 @@ AppAsset::register($this);
         ]);
         NavBar::end();
         ?>
-        <?php echo CategoryHeaderMenuWidget::widget() ?>
     </div>
     <div class="container-fluid">
         <?= Breadcrumbs::widget([
