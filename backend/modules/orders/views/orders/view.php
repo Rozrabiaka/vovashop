@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use \backend\models\Orders;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Orders */
@@ -29,15 +30,36 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'product_id',
+            [
+                'attribute' => 'product_id',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->product_id, ['/products/products/view?id=' . $model->product_id]);
+                },
+            ],
             'price',
-            'status',
+            [
+                'attribute' => 'status',
+                'value' => function ($model) {
+                    return Orders::getStatusTypeView($model->status);
+                },
+            ],
             'qty',
             'order_number',
             'phone',
-            'delivery_type',
-            'payment_type',
+            [
+                'attribute' => 'delivery_type',
+                'value' => function ($model) {
+                    return Orders::getDeliveryTypeView($model->delivery_type);
+                },
+            ],
+            [
+                'attribute' => 'payment_type',
+                'value' => function ($model) {
+                    return Orders::getPaymentTypeView($model->payment_type);
+                },
+                'filter' => Orders::getPaymentFilerList()
+            ],
             'address',
             'date',
         ],

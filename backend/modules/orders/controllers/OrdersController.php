@@ -2,6 +2,7 @@
 
 namespace backend\modules\orders\controllers;
 
+use backend\models\OrdersSearch;
 use Yii;
 use backend\models\Orders;
 use yii\data\ActiveDataProvider;
@@ -46,12 +47,12 @@ class OrdersController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Orders::find(),
-        ]);
+        $searchModel = new OrdersSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
         ]);
     }
 
@@ -81,8 +82,15 @@ class OrdersController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $statusDropDown = $model::getStatusFilerList();
+        $deliveryDropDown = $model::getDeliveryFilerList();
+        $paymentDropDown = $model::getPaymentFilerList();
+
         return $this->render('create', [
             'model' => $model,
+            'statusDropDown' => $statusDropDown,
+            'deliveryDropDown' => $deliveryDropDown,
+            'paymentDropDown' => $paymentDropDown,
         ]);
     }
 
@@ -101,8 +109,14 @@ class OrdersController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+        $statusDropDown = Orders::getStatusFilerList();
+        $deliveryDropDown = Orders::getDeliveryFilerList();
+        $paymentDropDown = Orders::getPaymentFilerList();
         return $this->render('update', [
             'model' => $model,
+            'statusDropDown' => $statusDropDown,
+            'deliveryDropDown' => $deliveryDropDown,
+            'paymentDropDown' => $paymentDropDown,
         ]);
     }
 
