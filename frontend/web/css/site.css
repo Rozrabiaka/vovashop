@@ -1242,7 +1242,7 @@ a.desc:after {
 }
 
 /*====================
-    3.2 Header Bottom CSS
+     Header Bottom CSS (widget)
 ====================*/
 .header-bottom {
     background-color: transparent;
@@ -1275,7 +1275,7 @@ a.desc:after {
 }
 
 .main-menu > ul > li + li {
-    margin-left: 55px;
+    margin-left: 35px;
 }
 
 @media only screen and (min-width: 1200px) and (max-width: 1599px) {
@@ -1328,193 +1328,8 @@ a.desc:after {
     width: 0;
 }
 
-.main-menu ul .has-children {
-    position: relative;
-}
 
-.main-menu ul .has-children .sub-menu {
-    position: absolute;
-    background: #fff;
-    width: 230px;
-    padding: 20px 20px 24px;
-    -webkit-transform-origin: 0 0 0;
-    -ms-transform-origin: 0 0 0;
-    transform-origin: 0 0 0;
-    -webkit-transform: scaleY(0);
-    -ms-transform: scaleY(0);
-    transform: scaleY(0);
-    -webkit-box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.2);
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    z-index: 9;
-    border-bottom: 3px solid #ff4545;
-}
 
-.main-menu ul .has-children .sub-menu li {
-    list-style: none;
-}
 
-.main-menu ul .has-children .sub-menu li a {
-    line-height: 40px;
-    color: #212121;
-    text-decoration: none;
-    font-size: 14px;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-}
 
-.main-menu ul .has-children .sub-menu li a:hover {
-    color: #ff4545;
-    padding-left: 5px;
-}
 
-.main-menu ul .has-children:hover .sub-menu, .main-menu ul .has-children:hover .mega-menu {
-    -webkit-transform: scaleY(1);
-    -ms-transform: scaleY(1);
-    transform: scaleY(1);
-}
-
-/* Mega Menu */
-.mega-menu {
-    background: #fff;
-    padding: 30px;
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    -webkit-transform-origin: 0 0 0;
-    -ms-transform-origin: 0 0 0;
-    transform-origin: 0 0 0;
-    -webkit-transform: scaleY(0);
-    -ms-transform: scaleY(0);
-    transform: scaleY(0);
-    position: absolute;
-    width: calc(100% + 185px);
-    left: 15px;
-    right: auto;
-    top: 100%;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    z-index: 99;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    border-bottom: 3px solid #ff4545;
-}
-
-.mega-menu > li {
-    list-style: none;
-}
-
-.mega-menu > li .mega-menu-title {
-    font-size: 18px;
-    font-weight: 600;
-    padding-bottom: 15px;
-    position: relative;
-    font-family: "Montserrat", sans-serif;
-}
-
-.mega-menu > li .mega-menu-title::after {
-    position: absolute;
-    content: "";
-    background: #ff4545;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 2px;
-}
-
-.mega-menu > li > ul {
-    padding-left: 0;
-}
-
-.mega-menu > li > ul a {
-    line-height: 1;
-    color: #212121;
-    text-decoration: none;
-    font-size: 14px;
-    display: block;
-    padding: 10px 0;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-}
-
-.mega-menu > li > ul a:hover {
-    color: #ff4545;
-    padding-left: 5px;
-}
-
-/* Actions */
-.header-actions {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
-    -ms-flex-pack: end;
-    justify-content: flex-end;
-}
-
-.header-actions > * + * {
-    margin-left: 15px;
-}
-
-@media only screen and (max-width: 767px) {
-    .header-actions > * + * {
-        margin-left: 15px;
-    }
-}
-
-@media only screen and (max-width: 575px) {
-    .header-actions > * + * {
-        margin-left: 15px;
-    }
-}
-
-.header-actions .header-action-btn {
-    line-height: 100px;
-    position: relative;
-    display: block;
-    text-decoration: none;
-    color: #212121;
-}
-
-.header-actions .header-action-btn.dropdown-toggle::after {
-    display: none;
-}
-
-.header-actions .header-action-btn:hover {
-    color: #ff4545;
-}
-
-.header-actions .header-action-btn-cart {
-    padding-right: 10px;
-}
-
-.header-actions .header-action-btn i {
-    font-size: 24px;
-    line-height: 1;
-    vertical-align: middle;
-}
-
-.header-actions .header-action-btn .header-action-num {
-    font-size: 12px;
-    font-weight: 600;
-    line-height: 20px;
-    position: absolute;
-    z-index: 2;
-    top: 30px;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    color: #fff;
-    border-radius: 50%;
-    background-color: #ff4545;
-}
