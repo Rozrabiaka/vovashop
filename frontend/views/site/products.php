@@ -1,6 +1,10 @@
 <?php
 /* @var $dataProvider frontend\controllers\SiteController */
 
+/* @var $categories \backend\models\Categories */
+
+use common\widgets\FilterWidget;
+
 $this->title = 'ZEMISMOTO Список продуктов';
 ?>
 
@@ -63,22 +67,34 @@ $this->title = 'ZEMISMOTO Список продуктов';
                     <div class="title-products"><span class="title-products-span">Продукты</span></div>
                 </div>
             </div>
+            <div class="col-lg-3 col-12 col-custom filter">
+                <?php echo FilterWidget::widget() ?>
+
+                <div class="filters-products-category">
+                    <p>Список категорий:</p>
+                    <?php foreach ($categories as $category): ?>
+                        <a href="/site/products?category=<?php echo $category['id'] ?>"><?php echo $category['name'] ?></a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
             <!-- Shop Wrapper Start -->
-            <?php echo \yii\widgets\ListView::widget([
-                'dataProvider' => $dataProvider,
-                'itemView' => '_productsPagination.php',
-                'options' => [
-                    'tag' => 'div',
-                    'class' => 'shop_wrapper grid_4 row',
-                ],
-                'emptyText' => '<strong>Извините, нам не удалось найти товар(ы) по вашему запросу или его нету в наличии.</strong>',
-                'itemOptions' => [
-                    'tag' => 'div',
-                    'class' => 'col-xl-2 col-lg-3 col-md-3 col-sm-5 product',
-                ],
-                'summary' => 'Показано {count} из {totalCount}', // шаблон для summary
-            ]) ?>
-            <!-- Shop Wrapper End -->
+            <div class="col-lg-9 col-12 col-custom">
+                <?php echo \yii\widgets\ListView::widget([
+                    'dataProvider' => $dataProvider,
+                    'itemView' => '_productsPagination.php',
+                    'options' => [
+                        'tag' => 'div',
+                        'class' => 'row shop_wrapper grid_3',
+                    ],
+                    'emptyText' => '<strong>Извините, нам не удалось найти товар(ы) по вашему запросу или его нету в наличии.</strong>',
+                    'itemOptions' => [
+                        'tag' => 'div',
+                        'class' => 'col-lg-4 col-md-4 col-sm-6 product',
+                    ],
+                    'summary' => 'Показано {count} из {totalCount}', // шаблон для summary
+                ]) ?>
+                <!-- Shop Wrapper End -->
+            </div>
         </div>
     </div>
     <!-- Shop Section End -->

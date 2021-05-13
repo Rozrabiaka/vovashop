@@ -17,11 +17,11 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                     <!-- Single Product Image Start -->
                     <div class="single-product-img swiper-container gallery-top">
                         <div class="swiper-wrapper popup-gallery">
-							<?php foreach ($model->productsImages as $images): ?>
+                            <?php foreach ($model->productsImages as $images): ?>
                                 <a class="swiper-slide w-100" href="<?php echo $images->image_path ?>">
                                     <img class="w-100" src="<?php echo $images->image_path ?>" alt="Product">
                                 </a>
-							<?php endforeach; ?>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                     <!-- Single Product Image End -->
@@ -29,11 +29,11 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                     <!-- Single Product Thumb Start -->
                     <div class="single-product-thumb swiper-container gallery-thumbs">
                         <div class="swiper-wrapper">
-							<?php foreach ($model->productsImages as $images): ?>
+                            <?php foreach ($model->productsImages as $images): ?>
                                 <a class="swiper-slide" href="<?php echo $images->image_path ?>">
                                     <img src="<?php echo $images->image_path ?>" alt="Product">
                                 </a>
-							<?php endforeach; ?>
+                            <?php endforeach; ?>
                         </div>
 
                         <!-- Next Previous Button Start -->
@@ -87,9 +87,9 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                     <div class="shop-short-by mr-4">
                         <select class="nice-select" aria-label=".form-select-sm example">
                             <option value="selected" disabled selected>Пожалуйста, выберите цвет.</option>
-							<?php foreach ($model->colorName as $colors): ?>
+                            <?php foreach ($model->colorName as $colors): ?>
                                 <option value=<?php echo $colors->id ?>><?php echo $colors->name ?></option>
-							<?php endforeach; ?>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                     <!-- end colors -->
@@ -105,7 +105,8 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                     <!-- Cart & Wishlist Button Start -->
                     <div class="cart-wishlist-btn mb-4">
                         <div class="add-to_cart">
-                            <a class="btn btn-outline-dark btn-hover-primary add-cart" id="<?php echo $model->id ?>">Добавить в корзину</a>
+                            <a class="btn btn-outline-dark btn-hover-primary add-cart" id="<?php echo $model->id ?>">Добавить
+                                в корзину</a>
                         </div>
                     </div>
                     <!-- Cart & Wishlist Button End -->
@@ -206,7 +207,7 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                         <p>Если у вас есть вопросы касательно деталей доставки, обратитесь к специалистам по номеру
                             +380688071420.</p>
                     </div>
-					<?php if (!empty($model->productsAttributes[0])): ?>
+                    <?php if (!empty($model->productsAttributes[0])): ?>
                         <div class="product-info">
                             <table class="table table-hover">
                                 <tbody>
@@ -289,11 +290,11 @@ $this->title = 'ZEMISMOTO Продукт ' . $model->name;
                                 </tbody>
                             </table>
                         </div>
-                    <?php else:?>
+                    <?php else: ?>
                         <div class="product-info">
                             <p>Не удалось найди характеристики данного продукта.</p>
                         </div>
-					<?php endif; ?>
+                    <?php endif; ?>
                 </div>
                 <!-- Single Product Tab End -->
             </div>

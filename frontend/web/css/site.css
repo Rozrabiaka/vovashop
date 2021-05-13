@@ -1059,6 +1059,9 @@ a.desc:after {
 .cart-none{
     text-align: center;
 }
+.cart-none img{
+    width:100%;
+}
 .cart-none-text{
     margin-top:20px;
 }
@@ -1085,4 +1088,48 @@ a.desc:after {
 }
 .empty{
     text-align: center;
+}
+
+@media only screen and (max-width: 700px) {
+    .hero-slide-content .title {
+        font-size: 50px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .hero-slide-content .title {
+        font-size: 30px;
+    }
+}
+
+.sidebar_widget .widget_inner .widget-list .slider-range-submit {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+    text-transform: capitalize;
+    color: #fff;
+    background: #212121;
+    border: 0;
+    border-radius: 30px;
+    font-size: 14px;
+}
+.search-price-button{
+    width:100%;
+}
+.filter p{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1;
+    position: relative;
+    margin-top:25px;
+}
+.filters-products-category a{
+    font-size: 14px;
+    color: #2e2e2e;
+    text-transform: capitalize;
+    line-height: 1;
+    position: relative;
+    display: block;
+    padding: 10px 0;
+    font-weight: 500;
 }

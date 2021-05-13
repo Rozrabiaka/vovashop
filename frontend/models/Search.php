@@ -10,6 +10,8 @@ use yii\base\Model;
 class Search extends Model
 {
     public $q;
+    public $priceFrom;
+    public $priceTo;
 
     /**
      * {@inheritdoc}
@@ -17,7 +19,16 @@ class Search extends Model
     public function rules()
     {
         return [
-            [['q'], 'required'],
+            [['q'], 'string'],
+            [['priceFrom', 'priceTo'], 'integer'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'priceFrom' => 'От',
+            'priceTo' => 'До',
         ];
     }
 }
