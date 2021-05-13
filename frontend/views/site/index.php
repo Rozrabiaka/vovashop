@@ -127,33 +127,46 @@ $this->title = 'ZEMISMOTO Главная страница';
             </div>
             <!-- Shop Wrapper Start -->
 
-            <div class="shop_wrapper grid_4">
-                <!-- Single Product Start -->
-                <?php foreach ($products as $data): ?>
-                    <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5 product">
-                        <div class="product-inner">
-                            <div class="thumb">
-                                <a href="/site/product?id=<?php echo $data['id'] ?>" class="image">
-                                    <img class="first-image" src="<?php echo $data['image_path'] ?>"
-                                         alt="Product"/>
-                                </a>
-                            </div>
-                            <div class="content">
-                                <h5 class="title"><a
-                                            href="/site/product?id=<?php echo $data['id'] ?>"><?php echo $data['name'] ?></a>
-                                </h5>
-                                <span class="price">
+            <div class="row">
+                <div class="shop_wrapper grid_4">
+                    <!-- Single Product Start -->
+                    <?php
+                    $i = 0;
+                    foreach ($products as $data):
+                        $i++;
+                        ?>
+                        <?php if ($i == 4): ?>
+                        <div class="row">
+                    <?php endif; ?>
+                        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5 product">
+                            <div class="product-inner">
+                                <div class="thumb">
+                                    <a href="/site/product?id=<?php echo $data['id'] ?>" class="image">
+                                        <img class="first-image" src="<?php echo $data['image_path'] ?>"
+                                             alt="Product"/>
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <h5 class="title"><a
+                                                href="/site/product?id=<?php echo $data['id'] ?>"><?php echo $data['name'] ?></a>
+                                    </h5>
+                                    <span class="price">
                                             <span class="new"><?php echo $data['price'] ?> грн.</span>
                                     </span>
-                                <div class="shop-list-btn">
-                                    <a class="btn btn-sm btn-outline-dark btn-hover-primary show-product"
-                                       href="/site/product?id=<?php echo $data['id'] ?>"> Посмотреть продукт</a>
+                                    <div class="shop-list-btn">
+                                        <a class="btn btn-sm btn-outline-dark btn-hover-primary show-product"
+                                           href="/site/product?id=<?php echo $data['id'] ?>"> Посмотреть продукт</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-                <!-- Single Product End -->
+                        <?php if ($i == 4):$i = 0; ?>
+                        </div>
+                    <? endif; ?>
+
+                    <?php endforeach; ?>
+                    <!-- Single Product End -->
+                </div>
             </div>
             <!-- Shop Wrapper End -->
         </div>
