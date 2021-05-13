@@ -162,6 +162,7 @@ $this->title = 'ZEMISMOTO Главная страница';
                         </div>
                         <?php if ($i == 4):$i = 0; ?>
                         </div>
+
                     <? endif; ?>
 
                     <?php endforeach; ?>
