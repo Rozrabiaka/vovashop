@@ -130,15 +130,8 @@ $this->title = 'ZEMISMOTO Главная страница';
             <div class="row">
                 <div class="shop_wrapper grid_4">
                     <!-- Single Product Start -->
-                    <?php
-                    $i = 0;
-                    foreach ($products as $data):
-                        $i++;
-                        ?>
-                        <?php if ($i == 4): ?>
-                        <div class="row">
-                    <?php endif; ?>
-                        <div class="col-xl-2 col-lg-3 col-md-3 col-sm-5 product">
+					<?php foreach ($products as $data): ?>
+                        <div class="col-xl-2 col-lg-3 col-md-3  product">
                             <div class="product-inner">
                                 <div class="thumb">
                                     <a href="/site/product?id=<?php echo $data['id'] ?>" class="image">
@@ -160,12 +153,7 @@ $this->title = 'ZEMISMOTO Главная страница';
                                 </div>
                             </div>
                         </div>
-                        <?php if ($i == 4):$i = 0; ?>
-                        </div>
-
-                    <? endif; ?>
-
-                    <?php endforeach; ?>
+					<?php endforeach; ?>
                     <!-- Single Product End -->
                 </div>
             </div>
