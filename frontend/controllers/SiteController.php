@@ -70,7 +70,7 @@ class SiteController extends Controller
     public function actionProduct($id)
     {
         if (!empty($id)) {
-            $model = Products::findOne($id);
+            $model = Products::findOne((int)$id);
             if (!empty($model)) {
                 $this->getView()->registerCssFile("@web/css/swiper.min.css");
                 $this->getView()->registerJsFile("@web/js/swiper.min.js", ['depends' => [\yii\web\JqueryAsset::className()]]);

@@ -11,6 +11,9 @@ ul {
     background-color: #212121;
     border: #212121;
 }
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+    font-family: 'Raleway', sans-serif !important;
+}
 .navbar-toggle .icon-bar{
     background-color: #fff;
 }
@@ -1132,4 +1135,108 @@ a.desc:after {
     display: block;
     padding: 10px 0;
     font-weight: 500;
+}
+
+/*====================
+    7.13 404 Error Page CSS
+====================*/
+.error_form {
+    text-align: center;
+}
+
+.error_form .title {
+    font-size: 200px;
+    font-weight: 700;
+    color: #ff4545;
+    letter-spacing: 10px;
+    line-height: .73;
+    margin: 0 0 52px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
+    .error_form .title {
+        font-size: 130px;
+        letter-spacing: 4px;
+        margin: 0 0 40px;
+    }
+}
+
+@media only screen and (max-width: 479px) {
+    .error_form .title {
+        font-size: 106px;
+        letter-spacing: 4px;
+        margin: 0 0 20px;
+    }
+}
+
+.error_form .sub-title {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
+    .error_form .sub-title {
+        font-size: 18px;
+        line-height: 1;
+        margin-bottom: 14px;
+    }
+}
+
+.error_form p {
+    font-size: 17px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
+    .error_form p {
+        font-size: 14px;
+        margin-bottom: 22px;
+    }
+}
+
+.error_form .search-form-error {
+    width: 450px;
+    margin: 0 auto;
+    position: relative;
+}
+
+@media only screen and (max-width: 767px) {
+    .error_form .search-form-error {
+        width: 100%;
+    }
+}
+
+.error_form .search-form-error .input-text {
+    padding: 0 45px 0 10px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    color: #212121;
+    height: 40px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.error_form .search-form-error .submit-btn {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    border: none;
+    background: no-repeat;
+    font-size: 20px;
+    cursor: pointer;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s;
+    top: 0;
+    text-transform: uppercase;
+    padding: 0 15px;
+    font-weight: 600;
+}
+
+.error_form .search-form-error .submit-btn:hover {
+    color: #ff4545;
 }
