@@ -11,6 +11,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use common\widgets\SearchWidget;
+use common\widgets\CategoryHeaderMenuWidget;
 
 AppAsset::register($this);
 ?>
@@ -63,6 +64,7 @@ AppAsset::register($this);
         ]);
         NavBar::end();
         ?>
+        <?php echo CategoryHeaderMenuWidget::widget() ?>
     </div>
     <div class="container-fluid">
         <?= Breadcrumbs::widget([
