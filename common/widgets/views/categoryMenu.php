@@ -6,19 +6,21 @@
     <div class="header-bottom">
         <div class="header-sticky">
             <div class="container">
-                <div class="row align-items-center">
-                    <!-- Header Menu Start -->
-                    <div class="col-xl-8 d-none d-xl-block">
-                        <div class="main-menu position-relative">
-                            <ul>
-                                <?php foreach ($model as $data): ?>
-                                    <li><a href="/site/products?category=<?php echo $data['id'] ?>">
-                                            <span><?php echo $data['name'] ?></span></a></li>
-                                <?php endforeach; ?>
-                            </ul>
+                <div class="row col-md-12 col-sm-offset-1 hid">
+                    <div class="row">
+                        <!-- Header Menu Start -->
+                        <div class="col-sm-6 col-sm-offset-3 text-center">
+                            <div class="main-menu">
+                                <ul>
+                                    <?php foreach ($model as $data): ?>
+                                        <li><a href="/site/products?category=<?php echo $data['id'] ?>">
+                                                <span><?php echo $data['name'] ?></span></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
                         </div>
+                        <!-- Header Menu End -->
                     </div>
-                    <!-- Header Menu End -->
                 </div>
             </div>
         </div>
