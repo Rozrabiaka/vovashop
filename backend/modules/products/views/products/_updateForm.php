@@ -1,7 +1,5 @@
 <?php
 
-use unclead\multipleinput\MultipleInput;
-use unclead\multipleinput\MultipleInputColumn;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
@@ -14,39 +12,43 @@ use kartik\file\FileInput;
 /* @var $allCategories backend\modules\marks\controllers\MarksController */
 /* @var $allMarks backend\modules\marks\controllers\MarksController */
 /* @var $productStatus backend\modules\products\controllers\ProductsController */
-/* @var $productColors backend\modules\products\controllers\ProductsController */
 /* @var $imageArray backend\modules\products\controllers\ProductsController */
 /* @var $productAttributes backend\models\ProductsAttributes */
 /* @var $modelProductsAttributesMultiple backend\models\ProductsAttributesMultiple */
+/* @var $productSubCategories backend\modules\products\controllers\ProductsController */
 ?>
 
 <div class="products-form">
 
-	<?php $form = ActiveForm::begin([
-		'options' => ['enctype' => 'multipart/form-data'] // important
-	]); ?>
+    <?php $form = ActiveForm::begin([
+        'options' => ['enctype' => 'multipart/form-data'] // important
+    ]); ?>
 
-	<?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-	<?= $form->field($model, 'category_id')->dropDownList($allCategories, ['prompt' => 'Пожалуйста, выберите значение']) ?>
+    <?= $form->field($model, 'category_id')->dropDownList($allCategories, ['prompt' => 'Пожалуйста, выберите значение']) ?>
 
-	<?= $form->field($model, 'subcategory_id')->dropDownList(['prompt' => 'Пожалуйста, выберите категорию']) ?>
+    <?php if (!empty($productSubCategories)): ?>
+        <?= $form->field($model, 'subcategory_id')->dropDownList($productSubCategories) ?>
+    <?php else: ?>
+        <?= $form->field($model, 'subcategory_id')->dropDownList(['empty' => 'Не найдено подкатегорий выбраной вами категории'], ['class' => 'emptySubCategory form-control']) ?>
+    <?php endif; ?>
 
-	<?= $form->field($model, 'model')->dropDownList($allMarks, ['prompt' => 'Пожалуйста, выберите значение']) ?>
+    <?= $form->field($model, 'model')->dropDownList($allMarks, ['prompt' => 'Пожалуйста, выберите значение']) ?>
 
-	<?= $form->field($model, 'colors')->checkboxList($productColors) ?>
+    <!--    --><? //= $form->field($model, 'colors')->checkboxList($productColors) ?>
 
-	<?= $form->field($model, 'price')->textInput() ?>
+    <?= $form->field($model, 'price')->textInput() ?>
 
-	<?= $form->field($model, 'dollar_price')->textInput() ?>
+    <?= $form->field($model, 'dollar_price')->textInput() ?>
 
-	<?= $form->field($model, 'qty')->textInput() ?>
+    <?= $form->field($model, 'qty')->textInput() ?>
 
     <span style="color:red;">ВАЖНО!</span> Если Вы выбрали статус как "неактивен", то продукт не будет отбражаться на
     сайте в продаже
-	<?= $form->field($model, 'product_status')->dropDownList($productStatus) ?>
+    <?= $form->field($model, 'product_status')->dropDownList($productStatus) ?>
 
-	<?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <h4 class="product-attributes-show">Характеристики
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -56,18 +58,6 @@ use kartik\file\FileInput;
         </svg>
     </h4>
     <div class="product-attributes row">
-        <div class="col-md-6">
-			<?= $form->field($modelProductsAttributesMultiple, 'frame_number')->widget(MultipleInput::className(), [
-				'min' => 1,
-			]);
-			?>
-        </div>
-        <div class="col-md-6">
-			<?= $form->field($modelProductsAttributesMultiple, 'engine_number')->widget(MultipleInput::className(), [
-				'min' => 1,
-			]);
-			?>
-        </div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'engine_volume')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'engine_type')->textInput() ?></div>
         <div class="col-md-6"><?= $form->field($productAttributes, 'cooling')->textInput() ?></div>
@@ -90,25 +80,25 @@ use kartik\file\FileInput;
         <div class="col-md-6"><?= $form->field($productAttributes, 'maximum_speed')->textInput() ?></div>
     </div>
 
-	<?= $form->field($model, 'image[]')->widget(FileInput::classname(), [
-		'pluginOptions' => [
-			'initialPreview' => $model->imagesLinks,
-			'initialPreviewConfig' => $model->imagesLinksData,
-			'deleteUrl' => Url::toRoute(['/ajax/delete-product-image']),
-			'showRemove' => false,
-			'initialPreviewAsData' => true,
-			'showUpload' => false,
-			'overwriteInitial' => false,
-			'allowedFileExtensions' => ['jpg', 'png', 'jpeg'],
-			'maxFileSize' => 2800
-		],
-		'options' => ['multiple' => true, 'accept' => 'image/*'],
-	]); ?>
+    <?= $form->field($model, 'image[]')->widget(FileInput::classname(), [
+        'pluginOptions' => [
+            'initialPreview' => $model->imagesLinks,
+            'initialPreviewConfig' => $model->imagesLinksData,
+            'deleteUrl' => Url::toRoute(['/ajax/delete-product-image']),
+            'showRemove' => false,
+            'initialPreviewAsData' => true,
+            'showUpload' => false,
+            'overwriteInitial' => false,
+            'allowedFileExtensions' => ['jpg', 'png', 'jpeg'],
+            'maxFileSize' => 2800
+        ],
+        'options' => ['multiple' => true, 'accept' => 'image/*'],
+    ]); ?>
 
     <div class="form-group">
-		<?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
-	<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

@@ -30,6 +30,7 @@ $(document).ready(function () {
                         }));
                     }
                 } else {
+                    $('#products-subcategory_id').find('option').remove();
                     $('.field-products-subcategory_id').append("<span class='alert alert-warning'>Подкатегории для выбраной категории не существует. Вы можете добавить подкатегорию либо продолжить добавление продукта.</span>");
                     $('#products-subcategory_id').hide();
                 }
@@ -43,6 +44,12 @@ $(document).ready(function () {
         });
     });
 
+    const emptySubCategory = $("#products-subcategory_id").hasClass("emptySubCategory");
+    if (emptySubCategory === true) {
+        $('#products-subcategory_id').find('option').remove();
+        $('.field-products-subcategory_id').append("<span class='alert alert-warning'>Подкатегории для выбраной категории не существует. Вы можете добавить подкатегорию либо продолжить добавление продукта.</span>");
+        $('#products-subcategory_id').hide();
+    }
     //show or hide attributes
     jQuery('.product-attributes-show').click(function () {
         jQuery('.product-attributes').toggle();

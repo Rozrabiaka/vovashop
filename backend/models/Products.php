@@ -4,6 +4,7 @@ namespace backend\models;
 
 use common\models\User;
 use yii\helpers\ArrayHelper;
+use Yii;
 
 /**
  * This is the model class for table "products".
@@ -57,9 +58,9 @@ class Products extends \yii\db\ActiveRecord
             [['price'], 'number'],
             [['colors'], 'each', 'rule' => ['integer']],
             [['name'], 'string', 'max' => 255],
-            [['image'], 'file', 'maxFiles' => 16, 'skipOnEmpty' => false],
+            [['image'], 'file', 'maxFiles' => 16],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::className(), 'targetAttribute' => ['category_id' => 'id']],
-            [['subcategory_id'], 'exist', 'skipOnEmpty' => true, 'skipOnError' => true, 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
+            [['subcategory_id'], 'exist', 'targetClass' => Subcategories::className(), 'targetAttribute' => ['subcategory_id' => 'id']],
         ];
     }
 
@@ -171,5 +172,35 @@ class Products extends \yii\db\ActiveRecord
             self::PRODUCT_ACTIVE => 'Активне',
             self::PRODUCT_INACTIVE => 'Неактивен'
         );
+    }
+
+    public function uploadImages()
+    {
+        $uploadPath = Yii::getAlias('@uploads') . '/products/' . date('Y') . '/' . date('m');
+        $path = Yii::getAlias('@frontend') . '/web' . $uploadPath;
+        if (!is_dir($path))
+            mkdir($path, 0777, true);
+
+        $productId = $this->getPrimaryKey();
+        $productImageArray = array();
+        foreach ($this->image as $file) {
+            $fileName = md5(microtime() . rand(0, 9999)) . '_' . $file->name;
+            $imagePath = $path . '/' . $fileName;
+            if ($file->saveAs($imagePath)) {
+                $productImageArray[] = array(
+                    'product_id' => (int)$productId,
+                    'image_path' => $uploadPath . '/' . $fileName
+                );
+            }
+        }
+
+        //save to product image table path
+        Yii::$app->db->createCommand()->batchInsert(
+            ProductsImage::tableName(),
+            ['product_id', 'image_path'],
+            $productImageArray
+        )->execute();
+
+        return true;
     }
 }
