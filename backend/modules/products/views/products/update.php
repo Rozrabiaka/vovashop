@@ -7,10 +7,9 @@ use yii\helpers\Html;
 /* @var $allCategories backend\modules\categories\controllers\CategoriesController */
 /* @var $allMarks backend\modules\marks\controllers\MarksController */
 /* @var $productStatus backend\models\Products */
-/* @var $modelProductsAttributesMultiple backend\models\ProductsAttributesMultiple */
-/* @var $productColors backend\modules\productColors\controllers\ProductcolorsController */
 /* @var $productAttributes backend\modules\products\controllers\ProductsController */
 /* @var $imageArray backend\modules\products\controllers\ProductsController */
+/* @var $productSubCategories backend\modules\products\controllers\ProductsController */
 
 $this->title = 'Редактировать Продукт: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Продукты', 'url' => ['index']];
@@ -25,9 +24,8 @@ $this->params['breadcrumbs'][] = 'Редактировать';
 		'allMarks' => $allMarks,
 		'allCategories' => $allCategories,
 		'productStatus' => $productStatus,
-		'productColors' => $productColors,
 		'productAttributes' => $productAttributes,
-		'modelProductsAttributesMultiple' => $modelProductsAttributesMultiple,
+		'productSubCategories' => $productSubCategories,
 		'model' => $model,
 	]) ?>
 
